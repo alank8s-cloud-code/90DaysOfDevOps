@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="banner.png" alt="90-Day DevOps & Cloud Learning Journey" width="100%">
-</p>
-
 # 90-Days DevOps & Cloud Learning Journey
 
 I am a Computer Science student and currently a beginner in DevOps and Cloud Engineering. I have basic knowledge of Linux, Git, GitHub, and Docker, and now I want to strengthen my fundamentals through hands-on practice and real-world projects.
