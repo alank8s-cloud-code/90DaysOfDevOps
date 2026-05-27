@@ -80,9 +80,9 @@ Cloud Engineering is the process of building and managing applications, servers,
 
 ## 📝 My Initial Planning Notes
 
-| Page 1 | Page 2 |
-|--------|--------|
-| ![](note1.jpg) | ![](note2.jpg) |
+![](note1.jpg) 
+
+![](note2.jpg) 
 
 ---
 
