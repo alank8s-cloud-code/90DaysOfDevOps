@@ -23,7 +23,7 @@ Today's goal was to build Linux command confidence by creating a Linux command c
 
 ✅ Kept the cheat sheet concise and easy to read
 
-### What I Learned
+### What I Learned Today
 
 Today I practiced important Linux commands that are useful for daily system administration and troubleshooting. I learned how to manage processes, navigate the file system, and troubleshoot network connectivity issues.
 
