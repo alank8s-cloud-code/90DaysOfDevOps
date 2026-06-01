@@ -29,4 +29,5 @@ Today I practiced important Linux commands that are useful for daily system admi
 
 ### PDF Submission
 
+📄 [View Day 03 PDF](./command.pdf)
 
