@@ -193,37 +193,6 @@ tail -n 50 /var/log/nginx/access.log
 - Incoming requests were successfully logged.
 - Health-check requests appeared in the access log.
 
----
-
-# 📸 Screenshots
-
-Add screenshots for the following:
-
-### 1. Nginx Process Monitoring
-
-![Output](nginx-process-monitoring.png)
-
-### 2. VMStat Output
-
-![Output](nginx-process-monitoring.png)
-
-
-### 3. IOSTAT Output
-
-![Output](nginx-process-monitoring.png)
-
-
-### 4. Nginx Health Check
-
-![Output](nginx-process-monitoring.png)
-
-
-### 5. Access Log Verification
-
-![Output](nginx-process-monitoring.png)
-
-
----
 
 # 🔍 Quick Findings
 
