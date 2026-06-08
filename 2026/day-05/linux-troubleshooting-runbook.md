@@ -258,7 +258,10 @@ To reinforce today's troubleshooting concepts, handwritten notes were created co
 📄 Notes PDF:
 
 ```text
-day05-linux-troubleshooting-notes.pdf
+### PDF Submission
+
+📄 [View Day 03 PDF](./day05-linux-troubleshooting-notes.pdf)
+
 ```
 
 ---
