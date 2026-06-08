@@ -201,33 +201,27 @@ Add screenshots for the following:
 
 ### 1. Nginx Process Monitoring
 
-```text
-images/nginx-process-monitoring.png
-```
+![Output](nginx-process-monitoring.png)
 
 ### 2. VMStat Output
 
-```text
-images/vmstat-output.png
-```
+![Output](nginx-process-monitoring.png)
+
 
 ### 3. IOSTAT Output
 
-```text
-images/iostat-output.png
-```
+![Output](nginx-process-monitoring.png)
+
 
 ### 4. Nginx Health Check
 
-```text
-images/nginx-ping-check.png
-```
+![Output](nginx-process-monitoring.png)
+
 
 ### 5. Access Log Verification
 
-```text
-images/access-log-verification.png
-```
+![Output](nginx-process-monitoring.png)
+
 
 ---
 
