@@ -1,153 +1,259 @@
-# Day 05 – Linux Troubleshooting Drill: CPU, Memory, Logs & Service Health
+# Day 05 – Linux Troubleshooting Drill: CPU, Memory, and Logs
 
-## 🎯 Task
+## 🎯 Objective
 
-Today's  my goal was to analyze the health of an Nginx web server using common Linux and DevOps monitoring commands.
-I performed checks on CPU, memory, disk usage, network connectivity, service logs, and application performance to understand the overall system state.
----
-
-## 🛠 Target Service
-
-For this drill, I selected:
-
-```text
-Nginx Web Server
-```
+Perform a focused Linux troubleshooting drill by collecting system health information, reviewing logs, analyzing resource usage, and documenting findings in a repeatable runbook format.
 
 ---
 
-## 📊 Snapshot: CPU & Memory
+# 🖥️ Environment Information
 
-Run and record outputs for:
+## Command 1: uname -a
 
 ```bash
-top
-free -h
+uname -a
+```
+
+### Observation
+
+- Verified Linux kernel version and system architecture.
+- Confirmed the environment is running on Ubuntu WSL2.
+
+---
+
+## Command 2: cat /etc/os-release
+
+```bash
+cat /etc/os-release
+```
+
+### Observation
+
+- Confirmed Ubuntu distribution version.
+- Verified operating system details for troubleshooting context.
+
+---
+
+# 📂 Filesystem Sanity Check
+
+## Command 3: Create Test Directory
+
+```bash
+mkdir /tmp/runbook-demo
+cp /etc/hosts /tmp/runbook-demo/hosts-copy
+ls -l /tmp/runbook-demo
+```
+
+### Observation
+
+- Successfully created test directory.
+- Verified file creation and permissions.
+
+---
+
+## Command 4: Disk Usage
+
+```bash
+df -h
+```
+
+### Observation
+
+- Disk usage was within safe limits.
+- No filesystem nearing full capacity.
+
+---
+
+# ⚡ CPU & Memory Snapshot
+
+## Target Service
+
+**Nginx Web Server**
+
+---
+
+## Command 5: Process Inspection
+
+```bash
 ps -C nginx -o pid,ppid,%cpu,%mem,cmd
+```
+
+### Observation
+
+- Nginx master and worker processes were running normally.
+- CPU and memory utilization remained low.
+
+---
+
+## Command 6: Memory Usage
+
+```bash
+free -h
+```
+
+### Observation
+
+- Sufficient free memory available.
+- No memory pressure or excessive swap usage observed.
+
+---
+
+## Command 7: Virtual Memory Statistics
+
+```bash
 vmstat
 ```
 
 ### Observation
 
-* CPU utilization was stable with low memory consumption, and Nginx worker processes were running normally.
-* Overall system health appeared good with no signs of resource exhaustion or abnormal process activity.
+- CPU remained mostly idle.
+- No blocked processes or significant I/O wait detected.
 
 ---
 
-## 💾 Snapshot: Disk & I/O
+# 💽 Disk & I/O Snapshot
 
-Run and record outputs for:
+## Command 8: Disk Usage Analysis
 
 ```bash
-df -h
 du -sh /var/log
+```
+
+### Observation
+
+- Log directory size was within expected range.
+- No abnormal log growth detected.
+
+---
+
+## Command 9: Disk I/O Statistics
+
+```bash
 iostat
 ```
 
 ### Observation
 
-* Disk usage was within safe limits with sufficient free storage available for system and application logs.
-* Disk read/write activity was normal, and no significant storage bottlenecks or I/O wait issues were observed.
+- Low I/O wait time observed.
+- No signs of storage bottlenecks.
 
 ---
 
-## 🌐 Snapshot: Network
+# 🌐 Network Snapshot
 
-Run and record outputs for:
+## Command 10: Open Ports Verification
 
 ```bash
 ss -tulpn
-curl -I http://localhost
+```
+
+### Observation
+
+- Nginx was listening on the configured port.
+- Required services were accessible.
+
+---
+
+## Command 11: Service Health Check
+
+```bash
 curl -I http://localhost:8090/ping
 ```
 
 ### Observation
 
-* Required ports were listening correctly, and Nginx was accepting incoming connections as expected.
-* HTTP health checks returned successful responses, confirming that the service was available and operational.
+- Received HTTP 200 OK response.
+- Confirmed Nginx health-check endpoint is operational.
 
 ---
 
-## 📜 Logs Reviewed
+# 📜 Logs Reviewed
 
-Run and record outputs for:
+## Command 12: Service Logs
 
 ```bash
 journalctl -u nginx -n 50
-tail -n 50 /var/log/nginx/access.log
-tail -n 50 /var/log/nginx/error.log
 ```
 
 ### Observation
 
-* Recent Nginx logs showed normal service activity with successful client requests and routine events.
-* No critical errors or unusual warnings were found, indicating stable application behavior.
+- No recent service failures detected.
+- Nginx startup and reload operations completed successfully.
 
 ---
 
-## 🧪 Load Testing
-
-Run:
+## Command 13: Access Logs
 
 ```bash
-ab -n 10000 -c 100 http://localhost/myapp/
+tail -n 50 /var/log/nginx/access.log
 ```
 
 ### Observation
 
-* Nginx handled the simulated workload efficiently with high request throughput and minimal response times.
-* Failed requests were negligible or absent, demonstrating good service stability under load.
+- Incoming requests were successfully logged.
+- Health-check requests appeared in the access log.
 
 ---
 
-## 📸 Screenshots
+# 📸 Screenshots
 
-Capture screenshots of the following:
+Add screenshots for the following:
 
-### 1. Process Monitoring
+### 1. Nginx Process Monitoring
 
 ```text
-images/process-monitoring.png
+images/nginx-process-monitoring.png
 ```
 
-### 2. Disk & I/O Monitoring
+### 2. VMStat Output
 
 ```text
-images/disk-monitoring.png
+images/vmstat-output.png
 ```
 
-### 3. Network Verification
+### 3. IOSTAT Output
 
 ```text
-images/network-check.png
+images/iostat-output.png
 ```
 
-### 4. Nginx Ping Endpoint
+### 4. Nginx Health Check
 
 ```text
-images/nginx-ping.png
+images/nginx-ping-check.png
 ```
 
-### 5. Log Verification
+### 5. Access Log Verification
 
 ```text
-images/log-analysis.png
+images/access-log-verification.png
 ```
 
 ---
 
-## ✍️ Handwritten Notes
+# 🔍 Quick Findings
 
-Prepared handwritten notes for:
+- Nginx service was healthy and responsive.
+- CPU usage remained low during testing.
+- Memory usage was stable with available free memory.
+- Disk utilization and I/O wait remained within normal limits.
+- Network connectivity and service endpoints were reachable.
+- No critical errors found in service or access logs.
 
-* Process Monitoring
-* Memory Analysis
-* Disk Usage
-* I/O Statistics
-* Network Troubleshooting
-* Service Logs
-* Nginx Health Checks
-* Load Testing
+---
+
+# ✍️ Handwritten Notes
+
+To reinforce today's troubleshooting concepts, handwritten notes were created covering:
+
+- Process Monitoring
+- CPU & Memory Analysis
+- Disk Usage Commands
+- Disk I/O Monitoring
+- Network Troubleshooting
+- Log Analysis
+- Nginx Health Checks
+- Troubleshooting Workflow
 
 📄 Notes PDF:
 
@@ -157,60 +263,41 @@ notes/day05-linux-troubleshooting-notes.pdf
 
 ---
 
-## 🔍 Quick Findings
+# 🚨 If This Worsens (Next Steps)
 
-* Nginx service was healthy and responding with HTTP 200.
-* CPU utilization remained low during normal operation.
-* No storage bottlenecks observed (`iowait = 0%`).
-* Access logs confirmed incoming requests.
-* Health-check endpoint `/ping` returned expected response.
+### 1. Increase Log Investigation
+
+```bash
+journalctl -u nginx -f
+tail -f /var/log/nginx/error.log
+```
+
+Monitor logs in real time for recurring errors.
 
 ---
 
-## 🚨 If This Worsens (Next Steps)
+### 2. Collect Resource Metrics
 
-1. Increase log verbosity and collect detailed logs.
+```bash
+top
+vmstat 1
+iostat -x 1
+```
 
-2. Monitor CPU, memory, and disk I/O continuously using `top`, `vmstat`, and `iostat`.
+Identify CPU, memory, or storage bottlenecks.
 
-3. Capture process traces using:
+---
+
+### 3. Deep Process Investigation
 
 ```bash
 strace -p <PID>
 ```
 
-4. Restart or reload the service if required:
-
-```bash
-sudo systemctl restart nginx
-```
-
-5. Escalate with collected logs, metrics, and screenshots.
+Analyze system calls if the process becomes unresponsive.
 
 ---
 
-## 🎓 Key Learning
+# 🚀 Outcome
 
-This troubleshooting drill helped me understand how to:
-
-* Investigate service health.
-* Analyze CPU and memory usage.
-* Detect storage bottlenecks.
-* Verify network connectivity.
-* Review service logs.
-* Build a repeatable incident runbook.
-
----
-
-## ✅ Conclusion
-
-In this Linux troubleshooting drill, I followed a simple step-by-step approach to check the health of an Nginx web server.
-
-Steps Performed:
-* Investigate service health.
-* Checked CPU and Memory Usage using top, free, ps, and vmstat to verify system performance.
-* Analyzed Disk and I/O using df, du, and iostat to ensure sufficient storage and normal disk activity.
-* Verified Network Connectivity using ss and curl commands to confirm that Nginx was listening and responding correctly.
-* Reviewed Service Logs using journalctl and Nginx log files to identify any errors or unusual events.
-* Performed Load Testing with Apache Benchmark (ab) to evaluate the server's performance under multiple requests.
-* Documented Findings by collecting command outputs, screenshots, and handwritten notes for future reference.
+Successfully completed a Linux troubleshooting drill by analyzing system resources, network status, disk I/O, service logs, and Nginx health checks while documenting observations in a reusable runbook.
