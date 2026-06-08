@@ -255,14 +255,9 @@ To reinforce today's troubleshooting concepts, handwritten notes were created co
 - Nginx Health Checks
 - Troubleshooting Workflow
 
-📄 Notes PDF:
+## 📄 PDF Submission
 
-```text
-### PDF Submission
-
-📄 [View Day 03 PDF](./day05-linux-troubleshooting-notes.pdf)
-
-```
+[View Day 05 Handwritten Notes](./day05-linux-troubleshooting-notes.pdf)
 
 ---
 
