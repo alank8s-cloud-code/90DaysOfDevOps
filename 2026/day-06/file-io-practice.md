@@ -28,7 +28,7 @@ touch notes.txt
 
 ### Output
 
-### Screenshot
+![Output Screenshot](file1.png)
 
 ---
 
@@ -65,25 +65,11 @@ I'm also fine.
 
 Display the file:
 
-```bash
-cat notes.txt
-```
-
-### Output
-
-```
-this is suraj.
-how are you?
-I'
-am fine.
-how about you?
-I'm also fine.
-```
-
 ### Screenshot
 
-```
-Add your screenshot here
+![Output Screenshot](file1.png)
+
+
 ```
 
 ---
@@ -120,23 +106,9 @@ Verify:
 cat notes.txt
 ```
 
-### Output
-
-```
-this is suraj.
-how are you?
-I'
-am fine.
-how about you?
-I'm also fine.
-This is last line i add inside the notes.txt file.
-```
-
 ### Screenshot
 
-```
-Add your screenshot here
-```
+![Output Screenshot](file1.png)
 
 ---
 
@@ -160,23 +132,10 @@ Using the cat command.
 cat notes.txt
 ```
 
-### Output
-
-```
-this is suraj.
-how are you?
-I'
-am fine.
-how about you?
-I'm also fine.
-This is last line i add inside the notes.txt file.
-```
-
 ### Screenshot
 
-```
-Add your screenshot here
-```
+![Output Screenshot](file1.png)
+
 
 ---
 
@@ -200,20 +159,11 @@ Using the head command.
 head -n 4 notes.txt
 ```
 
-### Output
-
-```
-this is suraj.
-how are you?
-I'
-am fine.
-```
 
 ### Screenshot
 
-```
-Add your screenshot here
-```
+![Output Screenshot](file2.png)
+
 
 ---
 
@@ -247,20 +197,9 @@ The correct command is:
 tail -n 4 notes.txt
 ```
 
-### Output
-
-```
-am fine.
-how about you?
-I'm also fine.
-This is last line i add inside the notes.txt file.
-```
-
 ### Screenshot
 
-```
-Add your screenshot here
-```
+![Output Screenshot](file2.png)
 
 ---
 
@@ -282,12 +221,6 @@ Create and display output:
 echo "Hi this is show the data" | tee output.txt
 ```
 
-### Output
-
-```
-Hi this is show the data
-```
-
 Verify:
 
 ```bash
@@ -296,15 +229,9 @@ cat output.txt
 
 ### Output
 
-```
-Hi this is show the data
-```
-
 ### Screenshot
 
-```
-Add your screenshot here
-```
+![Output Screenshot](file2.png)
 
 ---
 
@@ -326,17 +253,6 @@ The -a option appends data instead of overwriting.
 cat notes.txt | tee -a output.txt
 ```
 
-### Terminal Output
-
-```
-this is suraj.
-how are you?
-I'
-am fine.
-how about you?
-I'm also fine.
-This is last line i add inside the notes.txt file.
-```
 
 Verify:
 
@@ -344,24 +260,10 @@ Verify:
 cat output.txt
 ```
 
-### Output
-
-```
-Hi this is show the data
-this is suraj.
-how are you?
-I'
-am fine.
-how about you?
-I'm also fine.
-This is last line i add inside the notes.txt file.
-```
-
 ### Screenshot
 
-```
-Add your screenshot here
-```
+![Output Screenshot](file2.png)
+
 
 ---
 
@@ -403,3 +305,14 @@ File handling is a fundamental DevOps skill because:
 - Shell scripts generate and manipulate file output.
 - Monitoring and troubleshooting often involve reading log files.
 - Automation tools like Bash, Ansible, and CI/CD pipelines rely heavily on file operations.
+
+
+# Handwritten Practice Notes
+
+I also documented today's Linux File I/O practice in handwritten notes for better understanding and revision.
+
+## PDF Notes
+
+📄 **Handwritten Notes:** [View PDF](DAY-06pdf.pdf)
+
+> The PDF contains my handwritten commands, observations, and practice steps performed during Day 06.
