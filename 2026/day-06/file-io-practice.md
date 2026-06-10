@@ -62,6 +62,17 @@ am fine.
 how about you?
 I'm also fine.
 ```
+```
+
+Press:
+
+```
+Ctrl + D
+
+
+to save.
+
+---
 
 Display the file:
 
