@@ -350,6 +350,8 @@ sudo cp /var/log/nginx/access.log ~/nginx-logs.txt
 cat ~/nginx-logs.txt
 
 scp -i your-key.pem ubuntu@YOUR_PUBLIC_IP:~/nginx-logs.txt .
+
+#Here .(dot) means you download current folder
 ```
 
 ---
