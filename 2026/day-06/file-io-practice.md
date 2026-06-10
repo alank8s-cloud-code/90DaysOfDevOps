@@ -182,18 +182,6 @@ DevOps engineers frequently check the latest log entries.
 Initially, I tried:
 
 ```bash
-tail 4 notes.txt
-```
-
-This produced:
-
-```
-tail: cannot open '4' for reading
-```
-
-The correct command is:
-
-```bash
 tail -n 4 notes.txt
 ```
 
