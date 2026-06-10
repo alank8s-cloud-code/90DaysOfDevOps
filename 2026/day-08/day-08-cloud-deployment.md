@@ -48,7 +48,8 @@ For AWS:
 
 ### Screenshot 1
 
-📸 Add screenshot of your EC2 instance running.
+![EC2 Launch](Ec2.png)
+
 
 ---
 
@@ -83,7 +84,7 @@ ubuntu@ip-xxx:~$
 
 ### Screenshot 2
 
-📸 Add screenshot of successful SSH connection.
+![EC2 Launch](ssh.png)
 
 ---
 
@@ -151,6 +152,8 @@ Check status:
 sudo systemctl status docker
 ```
 
+![EC2 Launch](docker.png)
+
 ---
 
 ## Step 3: Install Nginx
@@ -187,7 +190,7 @@ Active: active (running)
 
 ### Screenshot 3
 
-📸 Add screenshot showing Nginx service running.
+![EC2 Launch](nginx.png)
 
 ---
 
@@ -284,7 +287,18 @@ cat ~/nginx-logs.txt
 
 ### Screenshot 5
 
-📸 Add screenshot of log file contents.
+![EC2 Launch](nginx_log.png)
+
+
+![EC2 Launch](nginx_l02.png)
+
+
+![EC2 Launch](see_log.png)
+
+
+![EC2 Launch](copy_log.png)
+
+
 
 ---
 
@@ -308,7 +322,7 @@ This downloads the log file to your computer.
 
 ### Screenshot 6
 
-📸 Add screenshot of successful SCP command.
+![EC2 Launch](download_log.png)
 
 ---
 
@@ -383,34 +397,6 @@ Solution:
 * Learned how to configure Security Groups for web access.
 * Learned how to check and save Nginx logs.
 * Learned how to transfer files from a remote server to a local machine.
-
----
-
-# Files for Submission
-
-## README.md
-
-✔ This documentation file.
-
-## nginx-logs.txt
-
-✔ Saved Nginx access logs.
-
-## Screenshots
-
-✔ EC2 instance running.
-
-✔ SSH connection.
-
-✔ Nginx service running.
-
-✔ Nginx welcome page.
-
-✔ Log file contents.
-
-✔ SCP download command.
-
----
 
 # Conclusion
 
