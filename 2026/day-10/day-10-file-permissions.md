@@ -1,9 +1,10 @@
 # Day 10 – File Permissions & File Operations Challenge
 
-## 🎯 Objective
+📖 Introduction
 
-Learn how to create, read, and manage files in Linux. Understand Linux file permissions, modify them using `chmod`, and verify access control using practical examples.
+File management and permissions are fundamental concepts in Linux and an essential skill for DevOps engineers and system administrators. Every file and directory in Linux has associated permissions that determine who can read, write, or execute it. Understanding these permissions helps protect system resources, maintain security, and control access to important files.
 
+In this challenge, I explored how to create, read, and manage files using common Linux commands. I also learned how to view and modify file permissions with chmod, assign appropriate access rights to files and directories, and test permission-related scenarios through practical examples.
 ---
 
 # Task 1: Create Files
