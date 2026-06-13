@@ -63,6 +63,10 @@ Every Linux file has:
 
 Ownership helps control file access and system security.
 
+### Output
+
+![Task 1](screenshots/task1-ls-l.png)
+
 ---
 
 # Task 2: Basic chown Operations
