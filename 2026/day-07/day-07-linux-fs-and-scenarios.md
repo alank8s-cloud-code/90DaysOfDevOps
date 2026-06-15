@@ -244,6 +244,8 @@ ls -la ~
 
 ### Output Screenshot
 
+![Output Screenshot](1.png)
+
 
 ---
 
@@ -256,7 +258,7 @@ ls -la ~
 ## Step 1
 
 ```bash
-systemctl status myapp
+systemctl status nginx
 ```
 
 Why:
@@ -267,7 +269,7 @@ Check whether the service is active, failed, or stopped.
 ## Step 2
 
 ```bash
-journalctl -u myapp -n 50
+journalctl -u nginx -n 50
 ```
 
 Why:
@@ -278,7 +280,7 @@ Review recent logs for error messages.
 ## Step 3
 
 ```bash
-systemctl is-enabled 
+systemctl is-enabled nginx
 ```
 
 Why:
@@ -294,6 +296,13 @@ systemctl list-units --type=service
 
 Why:
 Confirm the service exists and inspect other running services.
+
+### Output Screenshot
+
+![Output Screenshot](2.png)
+
+![Output Screenshot](3.png)
+
 
 ---
 
@@ -343,6 +352,14 @@ ps -p PID
 Why:
 Investigate the problematic process.
 
+### Output Screenshot
+
+![Output Screenshot](4.png)
+
+![Output Screenshot](5.png)
+
+![Output Screenshot](6.png)
+
 ---
 
 # Scenario 3: Finding Service Logs
@@ -377,6 +394,11 @@ journalctl -u nginx -f
 
 Why:
 Monitor logs in real time.
+
+![Output Screenshot](2.png)
+
+![Output Screenshot](3.png)
+
 
 ---
 
@@ -421,6 +443,9 @@ Verify execute permission was added.
 ./backup.sh
 ```
 
+![Output Screenshot](8.png)
+
+
 Why:
 Run the script to confirm the issue is resolved.
 
@@ -460,3 +485,17 @@ ps
 chmod
 ```
 ---
+
+
+# Handwritten Practice Notes
+
+## PDF Notes
+
+📄 **Handwritten Notes:** [View PDF](DAY-07_page-0001.pdf)
+
+> The PDF contains my handwritten commands, observations, and practice steps performed during Day 07.
+
+---
+📚 Conclusion
+
+Day 07 strengthened my understanding of the Linux File System Hierarchy and practical troubleshooting techniques. I learned how important directories support system operations and how to investigate common issues related to services, logs, processes, and file permissions.
