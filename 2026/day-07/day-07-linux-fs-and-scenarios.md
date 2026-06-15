@@ -40,12 +40,6 @@ ls -l /
 ### I would use this when...
 Navigating the Linux filesystem or locating important system directories.
 
-### Output Screenshot
-
-```
-Add Screenshot Here:
-images/root-directory.png
-```
 
 ---
 
@@ -70,12 +64,6 @@ ls -l /home
 
 Managing user files and personal scripts.
 
-### Output Screenshot
-
-```
-Add Screenshot Here:
-images/home-directory.png
-```
 
 ---
 
@@ -100,12 +88,6 @@ ls -l /root
 
 Performing administrative tasks.
 
-### Output Screenshot
-
-```
-Add Screenshot Here:
-images/root-home.png
-```
 
 ---
 
@@ -130,13 +112,6 @@ ls -l /etc
 
 Editing system configurations.
 
-### Output Screenshot
-
-```
-Add Screenshot Here:
-images/etc-directory.png
-```
-
 ---
 
 ## 5. `/var/log`
@@ -159,13 +134,6 @@ ls -l /var/log
 ### I would use this when...
 
 Troubleshooting system and service issues.
-
-### Output Screenshot
-
-```
-Add Screenshot Here:
-images/var-log.png
-```
 
 ---
 
@@ -190,12 +158,6 @@ ls -l /tmp
 
 Checking temporary application data.
 
-### Output Screenshot
-
-```
-Add Screenshot Here:
-images/tmp-directory.png
-```
 
 ---
 
@@ -259,13 +221,6 @@ Installing external software packages.
 ```bash
 du -sh /var/log/* 2>/dev/null | sort -h | tail -5
 ```
-
-### Output Screenshot
-
-```
-images/largest-log-files.png
-```
-
 ---
 
 ## Check Hostname
@@ -274,12 +229,6 @@ images/largest-log-files.png
 
 ```bash
 cat /etc/hostname
-```
-
-### Output Screenshot
-
-```
-images/hostname.png
 ```
 
 ---
@@ -291,12 +240,10 @@ images/hostname.png
 ```bash
 ls -la ~
 ```
+---
 
 ### Output Screenshot
 
-```
-images/home-list.png
-```
 
 ---
 
@@ -331,7 +278,7 @@ Review recent logs for error messages.
 ## Step 3
 
 ```bash
-systemctl is-enabled myapp
+systemctl is-enabled 
 ```
 
 Why:
@@ -403,7 +350,7 @@ Investigate the problematic process.
 ## Step 1
 
 ```bash
-systemctl status docker
+systemctl status nginx
 ```
 
 Why:
@@ -414,7 +361,7 @@ Check service health.
 ## Step 2
 
 ```bash
-journalctl -u docker -n 50
+journalctl -u nginx -n 50
 ```
 
 Why:
@@ -425,22 +372,11 @@ View recent Docker logs.
 ## Step 3
 
 ```bash
-journalctl -u docker -f
+journalctl -u nginx -f
 ```
 
 Why:
 Monitor logs in real time.
-
----
-
-## Step 4
-
-```bash
-journalctl -u docker --since today
-```
-
-Why:
-View logs generated today.
 
 ---
 
@@ -523,29 +459,4 @@ htop
 ps
 chmod
 ```
-
 ---
-
-# Screenshots Added
-
-- [ ] Root directory
-- [ ] Home directory
-- [ ] Root user directory
-- [ ] /etc contents
-- [ ] /var/log contents
-- [ ] /tmp contents
-- [ ] Largest log files
-- [ ] Hostname
-- [ ] Home directory listing
-
----
-
-## Day 07 Status
-
-**Linux File System Hierarchy:** ✅ Completed
-
-**Hands-on Practice:** ✅ Completed
-
-**Scenario-Based Troubleshooting:** ✅ Completed
-
-**Ready for Day 08:** 🚀
