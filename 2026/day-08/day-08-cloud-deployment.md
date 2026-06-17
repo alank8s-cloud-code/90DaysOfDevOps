@@ -239,7 +239,7 @@ This means your web server is working.
 
 ### Screenshot 4
 
-📸 Add screenshot of Nginx welcome page in browser.
+![EC2 Launch](Welome_nginx.png)
 
 ---
 
@@ -310,12 +310,6 @@ AWS:
 
 ```bash
 scp -i your-key.pem ubuntu@YOUR_PUBLIC_IP:~/nginx-logs.txt .
-```
-
-Utho:
-
-```bash
-scp root@YOUR_PUBLIC_IP:~/nginx-logs.txt .
 ```
 
 This downloads the log file to your computer.
