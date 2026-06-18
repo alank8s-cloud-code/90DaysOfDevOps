@@ -74,11 +74,8 @@ ls /home
 
 ## Output Screenshot
 
-Add screenshot here:
+![EC2 Launch](1.png)
 
-```
-images/task1-users.png
-```
 
 ---
 
@@ -112,9 +109,7 @@ cat /etc/group
 
 ## Output Screenshot
 
-```
-images/task2-groups.png
-```
+![EC2 Launch](2.png)
 
 ---
 
@@ -161,9 +156,8 @@ groups nairobi
 
 ## Output Screenshot
 
-```
-images/task3-group-membership.png
-```
+![EC2 Launch](3.png)
+
 
 ---
 
@@ -225,9 +219,7 @@ ls -l /opt/dev-project
 
 ## Output Screenshot
 
-```
-images/task4-dev-project.png
-```
+![EC2 Launch](4.png)
 
 ---
 
@@ -287,9 +279,8 @@ ls -l /opt/team-workspace
 
 ## Output Screenshot
 
-```
-images/task5-team-workspace.png
-```
+![EC2 Launch](5.png)
+
 
 ---
 
@@ -371,22 +362,6 @@ ls -l /opt/dev-project
 ls -l /opt/team-workspace
 ```
 
----
-
-# Project Structure
-
-```
-Day-09-User-Management/
-│
-├── README.md
-│
-└── images/
-    ├── task1-users.png
-    ├── task2-groups.png
-    ├── task3-group-membership.png
-    ├── task4-dev-project.png
-    └── task5-team-workspace.png
-```
 
 ---
 
