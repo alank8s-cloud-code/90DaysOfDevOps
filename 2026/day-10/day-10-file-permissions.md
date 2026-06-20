@@ -56,10 +56,6 @@ ls -l
 
 ### Content Added
 
-#### `notes.txt`
-
-(Add your content here)
-
 #### `script.sh`
 
 ```bash
@@ -68,13 +64,11 @@ echo "Hello DevOps"
 
 ### 📝 My Output
 
-Paste your output here:
-
 ```bash
 ls -l
 ```
 
-(Paste Output)
+![EC2 Launch](1.png)
 
 ---
 
@@ -135,23 +129,12 @@ tail -n 5 /etc/passwd
 
 ### 📝 My Output
 
-```bash
-cat notes.txt
-```
+![EC2 Launch](2_1.png)
 
-(Paste Output)
+![EC2 Launch](2_2.png)
 
-```bash
-head -n 5 /etc/passwd
-```
+![EC2 Launch](2_3.png)
 
-(Paste Output)
-
-```bash
-tail -n 5 /etc/passwd
-```
-
-(Paste Output)
 
 ---
 
@@ -225,7 +208,7 @@ rwxrwxrwx
 ls -l devops.txt notes.txt script.sh
 ```
 
-(Paste Output)
+![EC2 Launch](3.png)
 
 ---
 
@@ -249,14 +232,6 @@ To control who can read, write, or execute files.
 chmod +x script.sh
 ```
 
-#### Before
-
-(Paste Output)
-
-#### After
-
-(Paste Output)
-
 #### Run Script
 
 ```bash
@@ -268,8 +243,6 @@ chmod +x script.sh
 ```
 Hello DevOps
 ```
-
----
 
 ### 2. Make `devops.txt` Read-Only
 
@@ -294,15 +267,7 @@ Prevent modification of file content.
 444 = r-- r-- r--
 ```
 
-#### Before
 
-(Paste Output)
-
-#### After
-
-(Paste Output)
-
----
 
 ### 3. Set `notes.txt` to 640
 
@@ -330,15 +295,6 @@ Allow owner full access, group read-only, others no access.
 0 = ---
 ```
 
-#### Before
-
-(Paste Output)
-
-#### After
-
-(Paste Output)
-
----
 
 ### 4. Create `project` Directory with 755
 
@@ -370,7 +326,7 @@ Common permission setting for application directories.
 
 #### Output
 
-(Paste Output)
+![EC2 Launch](4.png)
 
 ---
 
@@ -396,12 +352,6 @@ or
 Cannot overwrite file
 ```
 
-### What Did You Observe?
-
-(Paste Output)
-
----
-
 ## Test 2: Execute File Without Execute Permission
 
 ### Commands
@@ -419,7 +369,7 @@ Permission denied
 
 ### Actual Output
 
-(Paste Output)
+![EC2 Launch](5.png)
 
 ---
 
