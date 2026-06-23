@@ -38,7 +38,7 @@ ls -l
 Example output:
 
 ```text
--rw-r--r-- 1 suraj suraj 0 Jun 13 devops-file.txt
+-rw-r--r-- 1 root root  0 Jun 13 devops-file.txt
 ```
 
 ### Format
@@ -62,10 +62,6 @@ Every Linux file has:
 * One group
 
 Ownership helps control file access and system security.
-
-### Output
-
-![Task 1](screenshots/task1-ls-l.png)
 
 ---
 
@@ -109,13 +105,13 @@ ls -l devops-file.txt
 devops-file.txt
 
 Original:
-suraj:suraj
+root :root 
 
 After:
-tokyo:suraj
+tokyo:root 
 
 Final:
-berlin:suraj
+berlin:root 
 ```
 
 ---
@@ -152,10 +148,10 @@ ls -l team-notes.txt
 team-notes.txt
 
 Original:
-suraj:suraj
+root:root 
 
 Updated:
-suraj:heist-team
+root:heist-team
 ```
 
 ---
@@ -191,7 +187,7 @@ ls -l project-config.yaml
 ```
 project-config.yaml
 
-suraj:suraj
+root:root
 
 ↓
 
@@ -448,14 +444,14 @@ bank-heist/
 
 | File                | Before      | After                |
 | ------------------- | ----------- | -------------------- |
-| devops-file.txt     | suraj:suraj | berlin:suraj         |
-| team-notes.txt      | suraj:suraj | suraj:heist-team     |
-| project-config.yaml | suraj:suraj | professor:heist-team |
-| app-logs            | suraj:suraj | berlin:heist-team    |
-| heist-project       | suraj:suraj | professor:planners   |
-| access-codes.txt    | suraj:suraj | tokyo:vault-team     |
-| blueprints.txt      | suraj:suraj | berlin:tech-team     |
-| escape-plan.txt     | suraj:suraj | nairobi:vault-team   |
+| devops-file.txt     | root:root | berlin:root|
+| team-notes.txt      | root:root | root:heist-team     |
+| project-config.yaml |  root:root  | professor:heist-team |
+| app-logs            |  root:root  | berlin:heist-team    |
+| heist-project       |  root:root  | professor:planners   |
+| access-codes.txt    |  root:root  | tokyo:vault-team     |
+| blueprints.txt      |  root:root | berlin:tech-team     |
+| escape-plan.txt     |  root:root  | nairobi:vault-team   |
 
 ---
 
