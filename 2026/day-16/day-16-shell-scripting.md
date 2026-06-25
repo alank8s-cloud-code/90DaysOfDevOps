@@ -189,7 +189,7 @@ should always be included.
 
 ### Screenshot
 
-**[Insert Screenshot Here – hello.sh execution output]**
+![Hello Script Output](1.png)
 
 ---
 
@@ -293,7 +293,7 @@ Variables are treated as plain text.
 
 ### Screenshot
 
-**[Insert Screenshot Here – variables.sh execution output]**
+![Hello Script Output](2.png)
 
 ---
 
@@ -355,7 +355,7 @@ Stores user input in the variable `name`.
 
 ### Screenshot
 
-**[Insert Screenshot Here – greet.sh execution output]**
+![Hello Script Output](3.png)
 
 ---
 
@@ -417,7 +417,7 @@ Given number is positive: 10
 
 ### Screenshot
 
-**[Insert Screenshot Here – check_number.sh execution output]**
+![Hello Script Output](4.png)
 
 ---
 
@@ -463,7 +463,7 @@ File exists: hello.sh
 
 ### Screenshot
 
-**[Insert Screenshot Here – file_check.sh execution output]**
+![Hello Script Output](4_1.png)
 
 ---
 
@@ -552,7 +552,8 @@ Checks whether the service is active.
 
 ### Screenshot
 
-**[Insert Screenshot Here – server_check.sh execution output]**
+![Hello Script Output](5.png)
+
 
 ---
 
