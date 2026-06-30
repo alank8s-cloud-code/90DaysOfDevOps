@@ -109,15 +109,6 @@ lvs
 df -h
 ```
 
-## Output
-
-```text
-Paste your command output here.
-```
-
-## Screenshot
-
-Add your screenshot here.
 
 ---
 
@@ -143,13 +134,8 @@ pvs
 
 ## Output
 
-```text
-Paste your command output here.
-```
+![Homepage](3.png)
 
-## Screenshot
-
-Add your screenshot here.
 
 ---
 
@@ -175,13 +161,7 @@ vgs
 
 ## Output
 
-```text
-Paste your command output here.
-```
-
-## Screenshot
-
-Add your screenshot here.
+![Homepage](4.png)
 
 ---
 
@@ -201,13 +181,7 @@ lvs
 
 ## Output
 
-```text
-Paste your command output here.
-```
-
-## Screenshot
-
-Add your screenshot here.
+![Homepage](5.png)
 
 ---
 
@@ -241,13 +215,11 @@ df -h /mnt/app-data
 
 ## Output
 
-```text
-Paste your command output here.
-```
+![Homepage](6.png)
 
-## Screenshot
+![Homepage](7.png)
 
-Add your screenshot here.
+
 
 ---
 
@@ -275,13 +247,10 @@ df -h /mnt/app-data
 
 ## Output
 
-```text
-Paste your command output here.
-```
+![Homepage](8.png)
 
-## Screenshot
+![Homepage](9.png)
 
-Add your screenshot here.
 
 ---
 
