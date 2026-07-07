@@ -145,8 +145,6 @@ means the DNS record can be cached for **300 seconds (5 minutes).**
 
 ---
 
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-
 # Task 2: IP Addressing
 
 ## What is an IPv4 Address?
@@ -365,7 +363,6 @@ Check the first numbers of the IP address.
 
 ---
 
-◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆
 
 # Task 3: CIDR & Subnetting
 
@@ -650,9 +647,6 @@ Subnetting means dividing one large network into smaller networks.
 
 ---
 
-✨ ✨ ✨ ✨ ✨ ✨ ✨ ✨ ✨ ✨ ✨ ✨
-
-
 # Task 4: Ports – The Doors to Services
 
 ## What is a Port?
@@ -917,8 +911,6 @@ Docker forwards the request to port **80** inside the container.
 - Common ports like **22**, **80**, **443**, and **3306** are important for DevOps and system administration.
 
 ---
-
-═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
 # Task 5: Putting It Together
 
