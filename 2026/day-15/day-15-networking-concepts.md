@@ -1037,7 +1037,3 @@ I learned that ports allow multiple services to run on the same device. I also l
 Today, I learned the basic networking concepts that every DevOps engineer should know. I now understand how DNS resolves domain names, how IP addresses identify devices, how CIDR and subnetting organize networks, and how ports allow different services to communicate. These concepts will help me understand networking better and build a strong foundation for learning Docker, Kubernetes, cloud platforms, and other DevOps tools.
 
 ---
-
-◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆
-  
-
