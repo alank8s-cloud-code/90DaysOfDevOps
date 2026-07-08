@@ -81,7 +81,7 @@ Shell scripting is used for:
 - Health checks
 - Monitoring
 
-It is one of the fundamental skills every DevOps Engineer should learn.
+It is one of the fundamental skills every DevOps Engineer should learn and they have good hands on practice.
 
 ---
 
