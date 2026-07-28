@@ -329,13 +329,15 @@ upstream   git@github.com:original/project.git
 
 ---
 
-## 📸 Screenshot
+## 📸 Output
 
-**Add screenshots of:**
+![Branch List](3.1.png)
 
-* GitHub repository
-* Remote URLs (`git remote -v`)
-* Both branches on GitHub
+![Branch List](3.2.png)
+
+![Branch List](3.3.png)
+
+![Branch List](3.4.png)
 
 ---
 
@@ -391,13 +393,11 @@ Remember:
 
 ---
 
-## 📸 Screenshot
+## 📸 Output
 
-**Add screenshots of:**
+![Branch List](4.1.png)
 
-* File edited on GitHub
-* `git pull`
-* Updated file locally
+![Branch List](4.2.png)
 
 ---
 
@@ -522,54 +522,63 @@ git push origin main
 
 ---
 
-## 📸 Screenshot
+## 📸 Output
 
-**Add screenshots of:**
+![Branch List](5.1.png)
 
-* Original repository
-* Forked repository
-* Cloned repository
-* `git remote -v`
-* `git fetch upstream`
-* `git merge upstream/main`
+![Branch List](5.2.png)
 
 ---
 
-# Day 23 Summary
-
-### Branch Commands
+## Commands Used
 
 ```bash
+# Branching
 git branch
 git branch feature-1
 git switch feature-1
 git switch -c feature-2
 git branch -d feature-2
 git branch -D feature-2
-```
 
-### Remote Commands
+# Checking History
+git log --oneline
+git status
 
-```bash
+# Remotes
 git remote -v
-git remote add origin <repo-url>
+git remote add origin <repository-url>
 git push -u origin main
 git push -u origin feature-1
-```
 
-### Pull & Fetch
-
-```bash
+# Pull & Fetch
 git fetch origin
 git pull origin main
-```
 
-### Clone & Fork
-
-```bash
-git clone <repo-url>
-git remote add upstream <original-repo-url>
+# Clone & Fork
+git clone <repository-url>
+git remote add upstream <original-repository-url>
 git fetch upstream
 git merge upstream/main
 git push origin main
 ```
+
+---
+
+## Challenges Faced
+
+* Initially confused about the difference between `git switch` and `git checkout` because both can switch branches. After learning that `git checkout` is a multi-purpose command while `git switch` is dedicated to branch switching, the workflow became much clearer.
+* Accidentally used `git checkout -d feature-2`, which put the repository into a **detached HEAD** state instead of deleting the branch. I learned that branches should be deleted using `git branch -d` or `git branch -D`.
+* Learned the difference between `origin` and `upstream` while working with remotes and understood how to keep a fork synchronized with the original repository.
+* Understood the difference between `git fetch` (downloads changes only) and `git pull` (downloads and merges changes).
+
+---
+
+## What I Learned
+
+* Created, switched, and deleted Git branches using modern Git commands.
+* Understood the purpose of `HEAD` and how Git tracks the current branch.
+* Learned the differences between `git switch` and `git checkout`.
+* Learned how to connect a local repository to GitHub using `origin` and how `upstream` is used with forked repositories.
+* Understood the differences between `git fetch` vs `git pull` and `clone` vs `fork`, and when each should be used.
+
