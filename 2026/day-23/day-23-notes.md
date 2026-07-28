@@ -112,15 +112,6 @@ style.css
 The `login.html` file disappears because it only exists in `feature-1`.
 
 ---
-
-## 📸 Screenshot
-
-**Add screenshots of:**
-
-* `git branch`
-* `git switch feature-1`
-* `git switch main`
-
 ---
 
 # Task 2: Branching Commands – Hands-On
@@ -242,16 +233,13 @@ git branch -D feature-2
 
 ---
 
-## 📸 Screenshot
+## 📸 Output
 
-**Add screenshots of:**
+![Branch List](2.1.png)
 
-* Branch list
-* Creating branches
-* Switching branches
-* Commit on feature-1
-* `git log --oneline`
-* Deleting a branch
+![Branch List](2.2.png)
+
+![Branch List](2.3.png)
 
 ---
 
