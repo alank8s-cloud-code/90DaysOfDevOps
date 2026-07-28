@@ -52,7 +52,7 @@ add
 
 ### Output
 
-![my-image-alt-text](path/to/image.png)
+![my-image-alt-text](1.png)
 
 ---
 
@@ -90,7 +90,7 @@ check_memory
 
 ### Output
 
-![my-image-alt-text](path/to/image.png)
+![my-image-alt-text](2.png)
 
 ---
 
@@ -194,7 +194,7 @@ echo "$city"
 
 ### Output
 
-![my-image-alt-text](path/to/image.png)
+![my-image-alt-text](4.png)
 
 ### Observation
 
@@ -260,7 +260,7 @@ main() {
 
 ### Output
 
-![my-image-alt-text](.png)
+![my-image-alt-text](5.png)
 
 ---
 
