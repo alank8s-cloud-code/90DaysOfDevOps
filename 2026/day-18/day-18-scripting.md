@@ -50,15 +50,9 @@ greet "Alan"
 add
 ```
 
-### Sample Output
+### Output
 
-```
-Hello, Alan!
-
-Enter first number: 10
-Enter second number: 20
-Sum: 30
-```
+![my-image-alt-text](path/to/image.png)
 
 ---
 
@@ -94,18 +88,9 @@ check_disk
 check_memory
 ```
 
-### Sample Output
+### Output
 
-```
-System Health Report
---------------------
-
-===== Disk Usage =====
-Filesystem      Size Used Avail Use%
-
-===== Memory Usage =====
-              total used free shared
-```
+![my-image-alt-text](path/to/image.png)
 
 ---
 
@@ -157,11 +142,10 @@ No such file or directory
 cat missing_file.txt | grep hello
 ```
 
-Output
+### Output
 
-```
-cat: missing_file.txt: No such file or directory
-```
+![my-image-alt-text](path/to/image.png)
+
 
 ---
 
@@ -210,14 +194,7 @@ echo "$city"
 
 ### Output
 
-```
-Alan
-25
-
-Name:
-
-London
-```
+![my-image-alt-text](path/to/image.png)
 
 ### Observation
 
@@ -281,33 +258,9 @@ main() {
 }
 ```
 
-### Sample Output
+### Output
 
-```
-========================================
-SYSTEM HEALTH REPORT
-========================================
-
-===== System Information =====
-Hostname
-Ubuntu
-
-===== System Uptime =====
-up 3 hours
-
-===== Disk Usage =====
-...
-
-===== Memory Usage =====
-...
-
-===== Top 5 CPU Processes =====
-PID  PPID CMD %CPU
-
-========================================
-Report Completed
-========================================
-```
+![my-image-alt-text](.png)
 
 ---
 
