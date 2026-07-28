@@ -141,12 +141,6 @@ No such file or directory
 ```bash
 cat missing_file.txt | grep hello
 ```
-
-### Output
-
-![my-image-alt-text](path/to/image.png)
-
-
 ---
 
 ## Strict Mode Explanation
