@@ -96,60 +96,106 @@ check_memory
 
 # ✅ Task 3 – Strict Mode (`set -euo pipefail`)
 
-### Objective
+## Objective
 
-Learn how Strict Mode makes Bash scripts safer.
+Create `strict_demo.sh` to understand how Bash **Strict Mode** handles different types of errors.
 
 ```bash
 #!/bin/bash
 
 set -euo pipefail
+
+echo "===== Strict Mode Demo ====="
+
+echo ""
+echo "Demo 1: Undefined Variable"
+
+echo "$username"
+
+echo ""
+echo "Demo 2: Failed Command"
+
+ls /folder_that_does_not_exist
+
+echo ""
+echo "Demo 3: Pipeline Failure"
+
+cat missing_file.txt | grep "hello"
+
+echo "Pipeline completed."
 ```
 
-## Demonstrations
+---
 
-### Undefined Variable
+## How I Tested This Task
+
+Since **Strict Mode stops the script as soon as it encounters an error**, it is **not possible to test all three demos in a single run**.
+
+To understand each option, I tested them **one at a time**:
+
+### Test 1 – `set -u`
+
+I commented out Demo 2 and Demo 3, then ran the script.
+
+Code tested:
 
 ```bash
 echo "$username"
 ```
 
-Output
+Output:
 
-```
+```text
 bash: username: unbound variable
 ```
 
+**Result:** `set -u` stopped the script because `username` was not defined.
+
 ---
 
-### Failed Command
+### Test 2 – `set -e`
+
+Next, I commented out Demo 1 and Demo 3, leaving only:
 
 ```bash
 ls /folder_that_does_not_exist
 ```
 
-Output
+Output:
 
+```text
+ls: cannot access '/folder_that_does_not_exist': No such file or directory
 ```
-No such file or directory
-```
+
+**Result:** `set -e` stopped the script immediately after the command failed.
 
 ---
 
-### Pipeline Failure
+### Test 3 – `set -o pipefail`
+
+Finally, I commented out Demo 1 and Demo 2, leaving only:
 
 ```bash
-cat missing_file.txt | grep hello
+cat missing_file.txt | grep "hello"
 ```
+
+Output:
+
+```text
+cat: missing_file.txt: No such file or directory
+```
+
+**Result:** The pipeline failed because the first command (`cat`) failed. With `set -o pipefail`, Bash treated the entire pipeline as failed.
+
 ---
 
-## Strict Mode Explanation
+## What does each flag do?
 
-| Flag | Description |
-|------|-------------|
-| `set -e` | Exit immediately if a command fails |
-| `set -u` | Treat undefined variables as errors |
-| `set -o pipefail` | Fail if any command in a pipeline fails |
+| Flag | Purpose |
+|------|---------|
+| `set -e` | Exit immediately if a command fails. |
+| `set -u` | Treat undefined variables as an error. |
+| `set -o pipefail` | Make the entire pipeline fail if any command in the pipeline fails. |
 
 ---
 
