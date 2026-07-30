@@ -291,7 +291,3 @@ jobs:
 * Learned how CI/CD helps teams release software faster with fewer errors.
 
 ---
-
-# Today I Learned (TIL)
-
-Today I learned that CI/CD automates software building, testing, and deployment. It reduces manual work, catches problems early, and helps teams deliver reliable software more quickly.
