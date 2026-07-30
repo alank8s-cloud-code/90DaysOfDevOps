@@ -1,8 +1,13 @@
 # Day 39 – CI/CD Concepts
 
-## Objective
+## 1. What is CI/CD?
 
-Learn the fundamentals of CI/CD, understand how a pipeline works, and explore a real GitHub Actions workflow.
+CI/CD stands for **Continuous Integration and Continuous Delivery/Deployment**. It is a way to automatically build, test, and deploy software so developers do not have to do it manually every time.
+
+* **CI (Continuous Integration)**: Developers frequently push code, and every push triggers automated builds and tests.
+* **CD (Continuous Delivery/Deployment)**: The tested code is automatically prepared for production (Delivery) or automatically deployed (Deployment).
+
+Think of it as a **software factory assembly line**.
 
 ---
 
