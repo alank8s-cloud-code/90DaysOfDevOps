@@ -1,155 +1,385 @@
-# Day 38 – YAML Basics
+# Day 01 - YAML Basics
 
-## Task Overview
+## Objective
 
-Before writing CI/CD pipelines, it is important to understand **YAML** because most DevOps tools use it for configuration.
-
-This day focused on:
-
-* Understanding YAML syntax and rules
-* Writing YAML files by hand
-* Validating YAML
-* Learning common mistakes and best practices
+- Understand YAML syntax and rules
+- Write YAML files by hand
+- Validate YAML files using `yamllint`
 
 ---
 
-## YAML Files Created
+# What is YAML?
 
-### 1. person.yaml
+**YAML** stands for **YAML Ain't Markup Language**.
 
-```yaml id="person-yaml"
-name: DevOps Learner
+It is a **human-readable data serialization language** used to store configuration files and exchange data between applications.
+
+Unlike programming languages, YAML is **not used to write logic or algorithms**. Instead, it stores information in a structured format.
+
+Example:
+
+```yaml
+name: Alan
 role: DevOps Engineer
-experience_years: 1
+learning: true
+```
+
+---
+
+# Why do we use YAML?
+
+YAML is widely used because it is:
+
+- Easy for humans to read and write
+- Uses simple indentation instead of brackets or tags
+- Supported by many DevOps tools
+- Easy for applications to parse
+
+### Popular DevOps tools that use YAML
+
+- Kubernetes
+- Docker Compose
+- GitHub Actions
+- Ansible
+- Azure DevOps Pipelines
+- GitLab CI/CD
+
+---
+
+# YAML Rules
+
+- Use **spaces**, never **tabs**
+- Write data using `key: value`
+- Keep indentation consistent
+- Use `-` for lists
+- Use `:` to separate keys and values
+
+---
+
+# Task 1: Key-Value Pairs
+
+## Objective
+
+Create a `person.yaml` file describing yourself.
+
+### person.yaml
+
+```yaml
+# My personal information
+
+---
+
+name: alan
+role: DevOps
+experience_years: fresher
 learning: true
 
+tools:
+  - Linux
+  - Networking
+  - GitandGithub
+  - Docker
+  - CI/CD(githubactions)
+
+hobbies: [cricket, cooking]
+```
+
+### Verification
+
+```bash
+cat person.yaml
+```
+
+Verify:
+
+- No tabs
+- Proper indentation
+- Correct key-value syntax
+
+---
+
+# Task 2: Lists
+
+## Objective
+
+Add:
+
+- tools (Block Style List)
+- hobbies (Flow Style / Inline List)
+
+### Block Style List
+
+```yaml
+tools:
+  - Linux
+  - Networking
+  - GitandGithub
+  - Docker
+  - CI/CD(githubactions)
+```
+
+### Flow Style (Inline List)
+
+```yaml
+hobbies: [cricket, cooking]
+```
+
+### Two ways to write Lists in YAML
+
+### 1. Block Style List
+
+```yaml
 tools:
   - Docker
   - Kubernetes
   - Git
-  - Jenkins
-  - Linux
-
-hobbies: [reading, learning, scripting]
 ```
 
-**Notes:**
+### 2. Flow Style (Inline List)
 
-* Key-value pairs: `key: value`
-* Lists can be written in two ways:
-
-  * **Block style:** using `-`
-  * **Inline style:** using `[item1, item2]`
+```yaml
+tools: [Docker, Kubernetes, Git]
+```
 
 ---
 
-### 2. server.yaml
+# Task 3: Nested Objects
 
-```yaml id="server-yaml"
+## Objective
+
+Create a `server.yaml` using nested objects.
+
+### server.yaml
+
+```yaml
+---
+
 server:
-  name: nginx-server
-  ip: 192.168.1.10
-  port: 80
+  name: linux_server
+  ip: 192.1.1.0
+  port:
+    - 80
 
 database:
-  host: localhost
-  name: app_db
-  credentials:
-    user: admin
-    password: secret123
-
-startup_script_literal: |
-  #!/bin/bash
-  echo "check the server is running or not"
-  sudo systemctl status nginx
-  echo "if server is not running then run it"
-  sudo systemctl start nginx
-  echo "nginx server is running"
-
-startup_script_folded: >
-  #!/bin/bash
-  echo "check the server is running"
-  sudo systemctl status nginx
-  echo "if server is not running"
-  sudo systemctl start nginx
-  echo "nginx server is running"
+  host: mysql
+  name: mysql_data
+  credential:
+    user: suraj
+    password: suraj@123
 ```
 
-**Notes:**
+### Verification
 
-* `|` preserves newlines → best for scripts and configs
-* `>` folds multiple lines into a single line → not good for scripts
+Replace spaces with a **Tab** and validate.
 
-**Debug hidden issues (tabs, trailing spaces, line endings):**
-
-```bash id="hidden-chars"
-sed -n '25,40l' server.yml
+```bash
+yamllint server.yaml
 ```
 
-* Trailing spaces → `$`
-* Tabs → `\t`
-* Line endings
+Example error:
+
+```
+found character '\t' that cannot start any token
+```
+
+This happens because YAML only allows **spaces** for indentation.
 
 ---
 
-## Task 6 – Spot the Difference
+# Task 4: Multi-line Strings
 
-### Block 1 (Correct)
+## Objective
 
-```yaml id="block1"
+Use both YAML block styles.
+
+### Literal Style (`|`)
+
+```yaml
+startup_script1: |
+  echo "Hi everyone"
+  echo "Hostname $HOSTNAME"
+  echo "OS Version: $(cat /etc/os-release)"
+```
+
+### Folded Style (`>`)
+
+```yaml
+startup_script2: >
+  This yaml file tells
+  server information,
+  database details,
+  and startup requirements.
+```
+
+### When to use `|`
+
+Use when line breaks must be preserved.
+
+Examples:
+
+- Bash scripts
+- Python scripts
+- SQL queries
+- Certificates
+- Configuration files
+
+### When to use `>`
+
+Use when writing:
+
+- Documentation
+- Paragraphs
+- Long descriptions
+- Notes
+
+---
+
+# Task 5: Validate Your YAML
+
+## Install yamllint
+
+Ubuntu/Debian
+
+```bash
+sudo apt update
+sudo apt install yamllint
+```
+
+Verify installation
+
+```bash
+yamllint --version
+```
+
+Validate files
+
+```bash
+yamllint person.yaml
+yamllint server.yaml
+```
+
+Validate all YAML files
+
+```bash
+yamllint .
+```
+
+### Example Errors
+
+Missing space after colon
+
+```yaml
+name:alan
+```
+
+Output
+
+```
+syntax error
+```
+
+Trailing spaces
+
+```
+error trailing spaces
+```
+
+Wrong indentation
+
+```
+mapping values are not allowed here
+```
+
+Fix the errors and run `yamllint` again until no errors remain.
+
+---
+
+# Task 6: Spot the Difference
+
+## Block 1 (Correct)
+
+```yaml
 name: devops
 tools:
   - docker
   - kubernetes
 ```
 
-**Why it is correct:**
+## Block 2 (Broken)
 
-* `tools` is a list → use `-`
-* Both list items have same indentation
-* Structure is clear and valid
-
----
-
-### Block 2 (Broken)
-
-```yaml id="block2"
+```yaml
 name: devops
 tools:
 - docker
   - kubernetes
 ```
 
-**What is wrong:**
+### What is wrong?
 
-* List items do not have same indentation
-* YAML uses indentation for structure
-* Causes parsing/validation error
+The second list item is indented differently from the first.
 
----
+YAML expects all items in the same list to start at the same indentation level.
 
-## What I Learned (3 Key Points)
+Correct version:
 
-1. **Indentation is everything in YAML**
-
-   * Same indentation → siblings
-   * More indentation → child
-   * Tabs must never be used
-
-2. **Use correct symbols:**
-
-   * `:` → single values or objects
-   * `-` → lists
-   * `|` → scripts and configs
-   * `>` → long text, not scripts
-
-3. **Read YAML like English:**
-
-   * Hyphen `-` = one item
-   * Indentation shows ownership
-   * Clear structure prevents errors
+```yaml
+name: devops
+tools:
+  - docker
+  - kubernetes
+```
 
 ---
 
-**Result:**
-After Day 38, I can write **valid YAML**, understand **lists, objects, scripts**, and debug hidden errors like tabs or trailing spaces.
+# Commands Used
+
+Display YAML file
+
+```bash
+cat person.yaml
+cat server.yaml
+```
+
+Validate YAML
+
+```bash
+yamllint person.yaml
+yamllint server.yaml
+```
+
+Validate all YAML files
+
+```bash
+yamllint .
+```
+
+Check line numbers
+
+```bash
+cat -n server.yaml
+```
+
+Display only a specific line
+
+```bash
+sed -n '7p' server.yaml
+```
+
+---
+
+# What I Learned
+
+- What YAML is and why it is used
+- How to write key-value pairs
+- Difference between Block Style and Flow Style lists
+- How nested objects work
+- Difference between `|` and `>`
+- How to validate YAML using `yamllint`
+- Common YAML errors and how to fix them
+- Importance of spaces and indentation in YAML
+
+---
+
+# Conclusion
+
+Today I learned the fundamentals of YAML, including key-value pairs, lists, nested objects, multi-line strings, and validation using `yamllint`. YAML is one of the most important configuration languages in DevOps because tools like Kubernetes, Docker Compose, Ansible, and GitHub Actions rely heavily on it. Mastering these basics will make it much easier to work with modern DevOps tools and CI/CD pipelines.
