@@ -74,14 +74,6 @@ role: DevOps
 experience_years: fresher
 learning: true
 
-tools:
-  - Linux
-  - Networking
-  - GitandGithub
-  - Docker
-  - CI/CD(githubactions)
-
-hobbies: [cricket, cooking]
 ```
 
 ### Verification
