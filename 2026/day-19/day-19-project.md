@@ -5,16 +5,18 @@
 
 # Objective
 
-Automate common Linux administration tasks using Bash scripting and Cron.
+System administrators often perform repetitive maintenance tasks such as rotating logs, creating backups, and monitoring servers. Doing these tasks manually every day is time-consuming and can lead to mistakes if forgotten.
 
-This project includes:
+In this project, I automated these routine administration tasks using **Bash scripting** and **Cron**, allowing Linux to perform them automatically at scheduled times. This improves system reliability, saves storage space, protects important data through regular backups, and reduces manual effort.
 
-- Log Rotation Script
-- Server Backup Script
-- Maintenance Script
-- Cron Scheduling
-- Sample Outputs
-- Key Learnings
+The main objectives of this project are:
+
+- Automate log management by compressing and removing old log files.
+- Create regular backups of important directories.
+- Verify that backups are created successfully.
+- Schedule maintenance tasks using Cron.
+- Record maintenance activities in a log file for monitoring and troubleshooting.
+- Learn how Linux automation simplifies system administration.
 
 ---
 
@@ -102,18 +104,7 @@ perform_log_rotation
 
 # Sample Output
 
-```
-Compressing logs older than 7 days...
-
-Compressed 5 log files.
-
-Deleting compressed logs older than 30 days...
-
-Deleted 2 compressed log files.
-
-===============================
-Log rotation completed successfully.
-```
+![Day 19 Banner](.png)
 
 ---
 
@@ -205,17 +196,7 @@ create_backup
 
 # Sample Output
 
-```
-Creating backup...
-
-Backup created successfully.
-
-Archive Name : backup_2026-08-02-10-45-15.tar.gz
-
-Archive Size : 25M
-
-Deleted backups older than 14 days.
-```
+![Day 19 Banner](2.png)
 
 ---
 
@@ -323,33 +304,10 @@ echo "" >> "$LOGFILE"
 
 ---
 
-# Sample maintenance.log
+# Sample maintenance.sh
 
-```
-===== Maintenance Started : Sat Aug 2 10:30:01 IST 2026 =====
+![Day 19 Banner](4.png)
 
-Running Log Rotation...
-
-Compressing logs older than 7 days...
-
-Compressed 4 log files.
-
-Deleting compressed logs older than 30 days...
-
-Deleted 1 compressed log file.
-
-Running Backup...
-
-Creating backup...
-
-Backup created successfully.
-
-Archive Name : backup_2026-08-02-10-30-01.tar.gz
-
-Archive Size : 18M
-
-===== Maintenance Finished : Sat Aug 2 10:30:05 IST 2026 =====
-```
 
 ---
 
@@ -358,6 +316,8 @@ Archive Size : 18M
 ```cron
 0 1 * * * /home/alan/DevOps_Journay_Zero_to_Hero/linux_practice/day-19/maintenance.sh
 ```
+
+![Day 19 Banner](4.1.png)
 
 ---
 
