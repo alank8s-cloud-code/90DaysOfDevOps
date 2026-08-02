@@ -104,7 +104,7 @@ perform_log_rotation
 
 # Sample Output
 
-![Day 19 Banner](.png)
+![Day 19 Banner](1.png)
 
 ---
 
