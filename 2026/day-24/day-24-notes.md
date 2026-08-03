@@ -1,649 +1,825 @@
-# Day 24 – Git Merge, Rebase, Squash, Stash & Cherry-pick
+# Git Branching, Merge, Rebase, Squash, Stash & Cherry-Pick – Hands-On Lab
+
+## 📌 Objective
+
+This lab demonstrates some of the most important Git workflows used in real-world software development.
+
+You will learn:
+
+- Creating and switching branches
+- Fast-forward merge
+- Merge commit
+- Merge conflicts
+- Git Rebase
+- Squash Merge
+- Git Stash
+- Git Cherry-pick
+
+---
+
+# Task 1: Git Merge – Hands-On
 
 ## Objective
 
-Learn advanced Git concepts by practicing:
-
-* Git Merge
-* Git Rebase
-* Squash Merge
-* Git Stash
-* Git Cherry-pick
-
-Understand when to use each command, why it exists, and how it affects Git history.
+Learn how Git merges branches, understand the difference between fast-forward and merge commits, and intentionally create a merge conflict.
 
 ---
 
-# Task 1 – Git Merge
-
-## What is Git Merge?
-
-Git Merge is a command that combines the changes from one branch into another branch.
-
-It takes the work done in a feature branch and brings it into the target branch (usually `main`).
-
-Think of it like this:
-
-```
-main
- │
- ├── A
- ├── B
- │
-feature-login
- │
- ├── C
- └── D
-
-After Merge
-
-main
- │
- ├── A
- ├── B
- ├── C
- └── D
-```
-
----
-
-## Why do we use Git Merge?
-
-In a real project, every developer works on their own branch.
-
-For example:
-
-* Developer A works on Login
-* Developer B works on Signup
-* Developer C fixes Bugs
-
-When the work is finished, all branches must be combined into the main project.
-
-Git Merge combines those branches safely.
-
----
-
-## Types of Merge
-
-Git mainly performs two kinds of merges.
-
-### 1. Fast-Forward Merge
-
-Git simply moves the `main` pointer forward because nobody changed `main` after the branch was created.
-
-Example
-
-```
-Before
-
-main
-A---B
-
-feature
-     \
-      C---D
-
-After
-
-main
-A---B---C---D
-```
-
-No extra merge commit is created.
-
----
-
-### 2. Merge Commit
-
-If both branches have new commits, Git cannot simply move the pointer.
-
-It creates a new merge commit.
-
-Example
-
-```
-Before
-
-        C---D (feature)
-       /
-A---B
-       \
-        E (main)
-
-After
-
-        C---D
-       /     \
-A---B---E-----M
-```
-
-`M` is the merge commit.
-
----
-
-## Commands Used
+## Step 1: Create Repository (Skip if already created)
 
 ```bash
-git checkout main
+mkdir git-merge-lab
+cd git-merge-lab
 
-git checkout -b feature-login
+git init
 
-echo "Login Page" > login.txt
+echo "# Git Merge Lab" > README.md
 
 git add .
+git commit -m "Initial commit"
+```
 
+---
+
+## Step 2: Create feature-login Branch
+
+```bash
+git checkout -b feature-login
+```
+
+---
+
+## Step 3: Add Two Commits
+
+```bash
+echo "Login Page Created" > login.txt
+
+git add .
 git commit -m "Add login page"
 
-echo "Login API" >> login.txt
+echo "Login Validation Added" >> login.txt
 
 git add .
+git commit -m "Add login validation"
+```
 
-git commit -m "Add login API"
+---
 
+## Step 4: Merge into Main
+
+```bash
 git checkout main
 
 git merge feature-login
 ```
 
+Observe the output.
+
+Git should display something similar to:
+
+```
+Updating xxxxx..xxxxx
+Fast-forward
+```
+
+This is a **Fast-Forward Merge**.
+
 ---
 
-## Observation
-
-Git performed a **Fast-Forward Merge** because `main` had not changed.
-
----
-
-## Second Merge
-
-Commands
+## Step 5: Create feature-signup Branch
 
 ```bash
 git checkout -b feature-signup
+```
 
+---
+
+## Step 6: Add Commits
+
+```bash
 echo "Signup Page" > signup.txt
 
 git add .
-
 git commit -m "Add signup page"
 
-git checkout main
-
-echo "Main Update" > app.txt
+echo "Signup Validation" >> signup.txt
 
 git add .
+git commit -m "Add signup validation"
+```
 
-git commit -m "Update app"
+---
 
+## Step 7: Move Main Ahead
+
+Switch back:
+
+```bash
+git checkout main
+```
+
+Create another commit.
+
+```bash
+echo "Homepage Updated" > home.txt
+
+git add .
+git commit -m "Update homepage"
+```
+
+Now both branches have different histories.
+
+---
+
+## Step 8: Merge feature-signup
+
+```bash
 git merge feature-signup
 ```
 
----
-
-## Observation
-
-Git created a **Merge Commit** because both branches had different commits.
+Git creates a **Merge Commit** because both branches have new commits.
 
 ---
 
-## Merge Conflict
+# Create Merge Conflict
 
-A merge conflict happens when Git cannot decide which change should be kept.
+Create a file:
 
-Example
+```bash
+echo "Version 1" > app.txt
 
-Branch A
-
-```
-Hello World
-```
-
-changes to
-
-```
-Hello Git
+git add .
+git commit -m "Add app file"
 ```
 
-Branch B
+Create branch:
 
-changes same line to
-
-```
-Hello DevOps
+```bash
+git checkout -b conflict-branch
 ```
 
-When merging:
+Modify:
+
+```bash
+echo "Feature Branch Version" > app.txt
+
+git add .
+git commit -m "Update app in feature branch"
+```
+
+Return to main:
+
+```bash
+git checkout main
+```
+
+Modify the same line:
+
+```bash
+echo "Main Branch Version" > app.txt
+
+git add .
+git commit -m "Update app in main"
+```
+
+Merge:
+
+```bash
+git merge conflict-branch
+```
+
+Git shows:
+
+```
+CONFLICT (content): Merge conflict in app.txt
+```
+
+Open file:
 
 ```
 <<<<<<< HEAD
-Hello Git
+Main Branch Version
 =======
-Hello DevOps
->>>>>>> feature
+Feature Branch Version
+>>>>>>> conflict-branch
 ```
 
-Git asks the developer to manually choose the correct version.
+Resolve manually.
 
----
-
-# Answers
-
-## What is a Fast-Forward Merge?
-
-A Fast-Forward Merge happens when the target branch has no new commits. Git simply moves the branch pointer forward without creating a merge commit.
-
----
-
-## When does Git create a Merge Commit?
-
-Git creates a merge commit when both branches have new commits and their histories have diverged.
-
----
-
-## What is a Merge Conflict?
-
-A merge conflict occurs when the same part of a file has been modified differently in two branches, and Git cannot automatically decide which version to keep.
-
----
-
-# Task 2 – Git Rebase
-
-## What is Git Rebase?
-
-Git Rebase moves your branch to start from the latest commit of another branch.
-
-Instead of combining histories like merge, it rewrites your commits as if they were created after the latest commits.
-
----
-
-## Why do we use Rebase?
-
-Rebase keeps Git history clean and linear.
-
-Instead of creating many merge commits, commits appear in one straight line.
-
----
-
-## Example
-
-Before
-
-```
-main
-
-A---B---C
-
-feature
-
-     D---E
-```
-
-After Rebase
-
-```
-A---B---C---D'---E'
-```
-
-Notice that D and E become new commits.
-
----
-
-## Commands
+After resolving:
 
 ```bash
-git checkout -b feature-dashboard
+git add app.txt
+git commit
+```
 
-echo Dashboard > dashboard.txt
+---
 
-git add .
+# Task 1 Questions & Answers
 
-git commit -m "Dashboard UI"
+## 1. What is a Fast-Forward Merge?
 
-echo API >> dashboard.txt
+A Fast-Forward Merge happens when the target branch has not moved ahead since the feature branch was created. Git simply moves the branch pointer forward without creating a new merge commit.
 
-git add .
+Example:
 
-git commit -m "Dashboard API"
+```
+A---B (main)
+     \
+      C---D (feature)
+```
 
+After merge:
+
+```
+A---B---C---D (main)
+```
+
+No merge commit is created.
+
+---
+
+## 2. When does Git create a Merge Commit?
+
+Git creates a merge commit when both branches have independent commits after they diverged.
+
+Example:
+
+```
+      C---D
+     /
+A---B
+     \
+      E
+```
+
+After merge:
+
+```
+      C---D
+     /     \
+A---B-------M
+     \
+      E
+```
+
+Here **M** is the merge commit.
+
+---
+
+## 3. What is a Merge Conflict?
+
+A merge conflict occurs when Git cannot automatically determine which changes should be kept because the same part of a file was modified in different branches.
+
+The developer must manually resolve the conflict before completing the merge.
+
+---
+
+---
+
+# Task 2: Git Rebase – Hands-On
+
+## Objective
+
+Learn how Git Rebase moves commits onto another branch and creates a cleaner project history.
+
+---
+
+## Step 1: Create feature-dashboard
+
+```bash
 git checkout main
 
-echo Home > home.txt
+git checkout -b feature-dashboard
+```
+
+---
+
+## Step 2: Add 3 Commits
+
+```bash
+echo "Dashboard UI" > dashboard.txt
 
 git add .
+git commit -m "Dashboard UI"
 
-git commit -m "Home update"
+echo "Charts Added" >> dashboard.txt
 
+git add .
+git commit -m "Add charts"
+
+echo "Dashboard Styling" >> dashboard.txt
+
+git add .
+git commit -m "Dashboard styling"
+```
+
+---
+
+## Step 3: Move Main Ahead
+
+```bash
+git checkout main
+```
+
+```bash
+echo "Footer Added" > footer.txt
+
+git add .
+git commit -m "Add footer"
+```
+
+---
+
+## Step 4: Rebase
+
+```bash
 git checkout feature-dashboard
 
 git rebase main
 ```
 
----
-
-## Observation
-
-`git log --oneline --graph --all`
-
-shows a straight history with no merge commit.
+Git reapplies dashboard commits on top of main.
 
 ---
 
-# Answers
-
-## What does Rebase actually do?
-
-It replays your commits on top of another branch and creates new commit IDs.
-
----
-
-## How is history different from Merge?
-
-Merge keeps branch history and creates merge commits.
-
-Rebase creates a clean, linear history without merge commits.
-
----
-
-## Why should you never Rebase shared commits?
-
-Rebase changes commit IDs. If other developers already have those commits, it causes history conflicts and makes collaboration difficult.
-
----
-
-## When would you use Rebase vs Merge?
-
-Use Rebase:
-
-* Before merging your own local branch.
-* To keep history clean.
-
-Use Merge:
-
-* For shared branches.
-* When preserving branch history is important.
-
----
-
-# Task 3 – Squash Merge
-
-## What is Squash Merge?
-
-Squash Merge combines all commits from a branch into one single commit before adding it to the target branch.
-
----
-
-## Why use Squash Merge?
-
-Sometimes a feature contains many tiny commits like:
-
-```
-Fix typo
-
-Update spacing
-
-Rename variable
-
-Remove blank line
-
-Fix comment
-```
-
-These are not useful in the final history.
-
-Squash Merge combines them into one meaningful commit.
-
----
-
-## Commands
+## Step 5: View History
 
 ```bash
+git log --oneline --graph --all
+```
+
+The history becomes linear.
+
+---
+
+# Task 2 Questions & Answers
+
+## 1. What does rebase actually do to your commits?
+
+Rebase removes your local commits temporarily, moves your branch to the latest commit of the target branch, and then reapplies your commits one by one on top of it.
+
+It rewrites commit history by creating new commit IDs.
+
+---
+
+## 2. How is the history different from a merge?
+
+Merge history:
+
+```
+A---B-------M
+     \     /
+      C---D
+```
+
+Rebase history:
+
+```
+A---B---C'---D'
+```
+
+The history becomes linear and easier to read.
+
+---
+
+## 3. Why should you never rebase commits that have been pushed and shared with others?
+
+Rebase changes commit hashes.
+
+If other developers already have those commits, rewriting them causes history mismatches, duplicate commits, and merge problems.
+
+Therefore, only rebase local commits that have not been shared.
+
+---
+
+## 4. When would you use rebase vs merge?
+
+### Use Rebase
+
+- Before opening a Pull Request
+- To maintain a clean history
+- For local feature branches
+- Before pushing your work
+
+### Use Merge
+
+- For shared branches
+- When preserving complete project history
+- When working with multiple developers
+- When history should show exactly how work was integrated
+
+---
+
+---
+
+# Task 3: Squash Commit vs Merge Commit
+
+## Objective
+
+Understand the difference between Squash Merge and Regular Merge.
+
+---
+
+## Step 1: Create feature-profile
+
+```bash
+git checkout main
+
 git checkout -b feature-profile
+```
 
-git commit -m "Commit 1"
+---
 
-git commit -m "Commit 2"
+## Step 2: Make Multiple Commits
 
-git commit -m "Commit 3"
+```bash
+echo "Profile Page" > profile.txt
 
-git commit -m "Commit 4"
+git add .
+git commit -m "Profile page"
 
+echo "Formatting Fix" >> profile.txt
+
+git add .
+git commit -m "Formatting"
+
+echo "Typo Fix" >> profile.txt
+
+git add .
+git commit -m "Typo"
+
+echo "Image Added" >> profile.txt
+
+git add .
+git commit -m "Image"
+
+echo "CSS Updated" >> profile.txt
+
+git add .
+git commit -m "CSS update"
+```
+
+---
+
+## Step 3: Squash Merge
+
+```bash
 git checkout main
 
 git merge --squash feature-profile
 
-git commit -m "Add Profile Feature"
+git commit -m "Add profile feature"
 ```
 
 ---
 
-## Observation
+## Step 4: View Log
 
-Main received only one commit.
+```bash
+git log --oneline
+```
+
+Only **one commit** appears on main.
 
 ---
 
-## Regular Merge
+## Step 5: Regular Merge
+
+Create another branch.
 
 ```bash
 git checkout -b feature-settings
+```
 
-git commit -m "Settings 1"
+Make several commits.
 
-git commit -m "Settings 2"
+```bash
+echo "Settings" > settings.txt
 
-git commit -m "Settings 3"
+git add .
+git commit -m "Settings page"
 
+echo "Theme" >> settings.txt
+
+git add .
+git commit -m "Theme"
+
+echo "Language" >> settings.txt
+
+git add .
+git commit -m "Language support"
+```
+
+Merge normally.
+
+```bash
 git checkout main
 
 git merge feature-settings
 ```
 
-Main contains every commit.
+View history.
+
+```bash
+git log --oneline --graph --all
+```
+
+All commits remain.
 
 ---
 
-# Answers
+# Task 3 Questions & Answers
 
-## What does Squash Merge do?
+## 1. What does squash merging do?
 
-It combines multiple commits into one single commit before merging.
-
----
-
-## When would you use Squash Merge?
-
-* Small feature branches
-* Cleanup commits
-* Pull Requests
-* Cleaner Git history
+Squash merge combines all commits from a feature branch into a single new commit before merging into the target branch.
 
 ---
 
-## Trade-off of Squashing
+## 2. When would you use squash merge vs regular merge?
 
-Advantages
+### Squash Merge
 
-* Clean history
-* Easier to read
-* One meaningful commit
+- Small features
+- Bug fixes
+- Cleaning commit history
+- Removing unnecessary intermediate commits
 
-Disadvantages
+### Regular Merge
 
-* Individual commit history is lost.
-* Debugging small changes later becomes harder.
-
----
-
-# Task 4 – Git Stash
-
-## What is Git Stash?
-
-Git Stash temporarily saves uncommitted changes without creating a commit.
+- Preserve all development history
+- Team collaboration
+- Large features
+- When each commit has value
 
 ---
 
-## Why do we use Stash?
+## 3. What is the trade-off of squashing?
 
-Imagine you are working on a feature.
+Advantages:
 
-Suddenly a production bug appears.
+- Clean history
+- Easier to read
+- One meaningful commit
 
-Instead of committing unfinished work, you stash it, fix the bug, then return to your original work.
+Disadvantages:
+
+- Individual commit history is lost
+- Harder to track how the feature was developed
 
 ---
 
-## Commands
+---
+
+# Task 4: Git Stash – Hands-On
+
+## Objective
+
+Temporarily save unfinished work without committing it.
+
+---
+
+## Step 1: Modify a File
+
+```bash
+echo "Work in Progress" >> README.md
+```
+
+Do not commit.
+
+---
+
+## Step 2: Try Switching Branch
+
+```bash
+git checkout feature-login
+```
+
+Git may prevent switching if changes would be overwritten.
+
+---
+
+## Step 3: Stash Changes
+
+```bash
+git stash
+```
+
+Working directory becomes clean.
+
+---
+
+## Step 4: Switch Branch
+
+```bash
+git checkout feature-login
+```
+
+Make a commit.
+
+```bash
+echo "Login Updated" >> login.txt
+
+git add .
+git commit -m "Update login"
+```
+
+---
+
+## Step 5: Return
+
+```bash
+git checkout main
+```
+
+---
+
+## Step 6: Restore Work
+
+```bash
+git stash pop
+```
+
+Your saved changes return.
+
+---
+
+## Step 7: Multiple Stashes
 
 ```bash
 git stash
 
+git stash
+
 git stash list
+```
 
-git stash pop
+Output:
 
+```
+stash@{0}
+stash@{1}
+stash@{2}
+```
+
+---
+
+## Step 8: Apply Specific Stash
+
+```bash
 git stash apply stash@{1}
 ```
 
 ---
 
-## Observation
+# Task 4 Questions & Answers
 
-Changes disappeared after `git stash`.
+## 1. What is the difference between `git stash pop` and `git stash apply`?
 
-After `git stash pop`, changes returned.
+### git stash pop
 
----
+- Restores the stash.
+- Removes it from the stash list after applying.
 
-# Answers
+### git stash apply
 
-## Difference between `git stash pop` and `git stash apply`
-
-| git stash pop                                         | git stash apply                                   |
-| ----------------------------------------------------- | ------------------------------------------------- |
-| Applies the stash and removes it from the stash list. | Applies the stash but keeps it in the stash list. |
+- Restores the stash.
+- Keeps the stash in the stash list for future use.
 
 ---
 
-## When would you use Stash?
+## 2. When would you use stash in a real-world workflow?
 
-* Urgent bug fixes
-* Switching branches
-* Pulling latest changes
-* Temporary work-in-progress
+Git Stash is useful when:
 
----
-
-# Task 5 – Git Cherry-pick
-
-## What is Cherry-pick?
-
-Cherry-pick copies a specific commit from one branch and applies it to another branch.
-
-Instead of merging the whole branch, only one selected commit is copied.
+- You need to quickly switch branches.
+- A production bug must be fixed immediately.
+- Your current work is incomplete.
+- You don't want to create temporary commits.
+- You need to pull the latest changes before continuing.
 
 ---
 
-## Why use Cherry-pick?
+---
 
-Imagine a branch has five commits.
+# Task 5: Cherry Picking
 
-Only one commit fixes a production bug.
+## Objective
 
-Instead of merging everything, copy only that fix.
+Copy a specific commit from one branch to another without merging the entire branch.
 
 ---
 
-## Commands
+## Step 1: Create Branch
 
 ```bash
-git checkout -b feature-hotfix
-
-git commit -m "Commit 1"
-
-git commit -m "Commit 2"
-
-git commit -m "Commit 3"
-
-git log --oneline
-
 git checkout main
 
-git cherry-pick <commit-id-of-second-commit>
+git checkout -b feature-hotfix
 ```
 
 ---
 
-## Observation
-
-Only the selected commit appeared on `main`.
-
----
-
-# Answers
-
-## What does Cherry-pick do?
-
-It copies a specific commit from one branch and applies it to another branch.
-
----
-
-## When would you use Cherry-pick?
-
-* Hotfixes
-* Bug fixes
-* Production patches
-* Copying one useful commit without merging the entire branch
-
----
-
-## What can go wrong?
-
-* Merge conflicts
-* Duplicate commits
-* Confusing history if overused
-
----
-
-# Commands Used
+## Step 2: Create Three Commits
 
 ```bash
-git checkout
-git checkout -b
-git branch
+echo "Hotfix 1" > hotfix.txt
+
 git add .
-git commit -m
-git merge
-git merge --squash
-git rebase
-git stash
-git stash list
-git stash pop
-git stash apply
-git cherry-pick
-git log --oneline --graph --all
+git commit -m "Hotfix 1"
+
+echo "Hotfix 2" >> hotfix.txt
+
+git add .
+git commit -m "Hotfix 2"
+
+echo "Hotfix 3" >> hotfix.txt
+
+git add .
+git commit -m "Hotfix 3"
 ```
 
 ---
 
-# Challenges Faced
+## Step 3: View Commit IDs
 
-* Understanding the difference between Fast-Forward Merge and Merge Commit.
-* Resolving merge conflicts when the same line was edited in multiple branches.
-* Understanding how Rebase rewrites commit history.
-* Learning when to use Squash Merge instead of a regular Merge.
-* Remembering the difference between `git stash pop` and `git stash apply`.
-* Identifying the correct commit hash for `git cherry-pick`.
+```bash
+git log --oneline
+```
+
+Example:
+
+```
+a1b2c3 Hotfix 3
+d4e5f6 Hotfix 2
+g7h8i9 Hotfix 1
+```
 
 ---
 
-# What I Learned
+## Step 4: Cherry-Pick Second Commit
 
-* Learned how Git Merge combines work from different branches.
-* Understood the difference between Fast-Forward Merge and Merge Commit.
-* Learned how to resolve merge conflicts manually.
-* Understood how Git Rebase creates a clean, linear commit history.
-* Learned why rebasing shared commits should be avoided.
-* Learned how Squash Merge keeps project history clean.
-* Understood how Git Stash saves temporary work without committing.
-* Learned how Cherry-pick copies only selected commits to another branch.
-* Improved understanding of Git history using `git log --oneline --graph --all`.
-* Gained confidence in choosing the right Git workflow for different scenarios.
+```bash
+git checkout main
+
+git cherry-pick d4e5f6
+```
+
+Replace `d4e5f6` with your actual commit hash.
+
+---
+
+## Step 5: Verify
+
+```bash
+git log --oneline
+```
+
+Only **Hotfix 2** appears on main.
+
+---
+
+# Task 5 Questions & Answers
+
+## 1. What does cherry-pick do?
+
+Cherry-pick copies a specific commit from one branch and applies it to another branch without merging the complete branch.
+
+---
+
+## 2. When would you use cherry-pick in a real project?
+
+Common use cases include:
+
+- Applying an urgent bug fix to another branch
+- Backporting fixes to older release branches
+- Reusing a specific feature commit
+- Applying only selected changes without merging unrelated work
+
+---
+
+## 3. What can go wrong with cherry-picking?
+
+Possible issues include:
+
+- Merge conflicts if the target branch has conflicting changes
+- Duplicate commits if the same changes are merged later
+- Loss of context because only one commit is copied
+- Dependency problems if the selected commit relies on earlier commits that were not cherry-picked
+
+---
+
+# Conclusion
+
+In this hands-on lab, you learned how to:
+
+- Create and manage Git branches
+- Perform Fast-Forward and Merge Commit merges
+- Resolve merge conflicts
+- Rebase branches for a clean linear history
+- Compare Squash Merge and Regular Merge
+- Temporarily save work using Git Stash
+- Apply individual commits using Git Cherry-pick
+
+These workflows are widely used in professional software development and DevOps environments, making them essential Git skills for collaborative projects.
