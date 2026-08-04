@@ -1,0 +1,20 @@
+===== Log Analysis Report =====
+Date of Analysis : Tue Aug  4 20:35:28 UTC 2026
+Log File         : ./app.log
+Total Lines      : 80
+Total Errors     : 55
+
+----- Top 5 Error Messages -----
+     20 Failed to connect to Redis server.
+     14 Database connection timeout.
+      7 Invalid API key provided.
+      5 Failed to load plugin.
+      5 DNS resolution failed.
+
+----- Critical Events -----
+65:2026-08-05 09:02:05 CRITICAL Database server is unreachable.
+69:2026-08-05 09:04:50 CRITICAL Disk usage reached 100%.
+72:2026-08-05 09:06:40 CRITICAL Kernel panic detected.
+75:2026-08-05 09:08:50 CRITICAL RAID array failure detected.
+78:2026-08-05 09:10:50 CRITICAL Network interface eth0 is down.
+80:2026-08-05 09:12:00 CRITICAL Unauthorized root access detected.
