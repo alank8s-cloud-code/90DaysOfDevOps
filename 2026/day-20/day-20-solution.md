@@ -28,12 +28,24 @@ Completed:
 
 ---
 
+## Output
+
+![Demo Image](1.png)
+
+---
+
 ## ✅ Task 2 – Error Count
 
 Completed:
 
 * Counted all lines containing **ERROR** or **Failed**.
 * Printed the total error count on the terminal.
+
+---
+
+## Output
+
+![Demo Image](2.png)
 
 ---
 
@@ -46,6 +58,12 @@ Completed:
 
 ---
 
+## Output
+
+![Demo Image](3.png)
+
+---
+
 ## ✅ Task 4 – Top 5 Error Messages
 
 Completed:
@@ -54,6 +72,12 @@ Completed:
 * Removed the date, time, and log level.
 * Counted duplicate error messages.
 * Displayed the top 5 most common error messages in descending order.
+
+---
+
+## Output
+
+![Demo Image](4.png)
 
 ---
 
@@ -75,6 +99,12 @@ The report contains:
 * Total error count
 * Top 5 error messages
 * Critical events with line numbers
+
+---
+
+## Output
+
+![Demo Image](5.png)
 
 ---
 
