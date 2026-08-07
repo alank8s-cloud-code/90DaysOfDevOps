@@ -104,6 +104,11 @@ jobs:
       - name: Print PR Branch
         run: echo "PR check running for branch: ${{ github.head_ref }}"
 ```
+# Output:
+
+![output ](1.1.png)
+
+![output ](1.2.png)
 
 ---
 
@@ -258,6 +263,9 @@ jobs:
       - name: Print Environment
         run: echo "Environment: ${{ inputs.environment }}"
 ```
+# Output:
+
+![output ](3.png)
 
 ---
 
@@ -413,6 +421,14 @@ Matrix combinations:
 6 Jobs
 ```
 
+# Output:
+
+![output ](4.1.png)
+
+![output ](4.2.png)
+
+![output ](4.3.png)
+
 ---
 
 # Task 5 – Exclude & Fail-Fast
@@ -480,6 +496,14 @@ Default:
 ```yaml
 fail-fast: true
 ```
+# Output:
+
+![output ](5.1.png)
+
+![output ](5.2.png)
+
+![output ](5.3.png)
+
 
 ---
 
