@@ -300,6 +300,23 @@ jobs:
           echo " The current user running the job: $(whoami)"
 
 ```
+---
+# Output
+---
+
+![output](1.1.png)
+
+---
+
+![output](1.2.png)
+
+---
+![output](1.3.png)
+
+---
+![output](1.4.png)
+
+---
 
 ## Why do they run in parallel?
 
@@ -384,7 +401,13 @@ jobs:
           echo " Node version: $(node -v)"
           echo " Git version: $(git -v)"
 ```
+---
+# Output
+---
 
+![output](2.1.png)
+
+---
 ## Why does it matter that runners come with tools pre-installed?
 
 GitHub-hosted runners are temporary. If every runner started with no tools, every workflow would have to install everything first.
@@ -523,7 +546,11 @@ A green/online indicator means the runner is connected and available.
 `Idle` means the self-hosted runner is connected to GitHub and currently has no job running.
 
 ---
+# Output
+---
+![output](3.1.png)
 
+---
 # Task 4 – Use Your Self-Hosted Runner
 
 ## Objective
@@ -570,7 +597,20 @@ jobs:
           echo "File is created successfully: $(ls -l hello.txt)"
 
 ```
+---
+# Output
+---
 
+![output](4.1.png)
+
+---
+
+![output](4.2.png)
+
+---
+![output](4.3.png)
+
+---
 ## What happens?
 
 Because:
@@ -659,7 +699,12 @@ jobs:
           echo "Runner OS: $RUNNER_OS"
           echo "Runner architecture: $RUNNER_ARCH"
 ```
+---
+# Output
+---
+![output](5.1.png)
 
+---
 ## Does it still pick up the job?
 
 Yes.
