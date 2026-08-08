@@ -245,42 +245,60 @@ The three jobs should run in parallel.
 ## Workflow
 
 ```yaml
-name: GitHub Hosted Runners
+name: Three Jobs run on the workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the enviroment to Deploy this workflow"
+        required: true
+        type: choice
+        options:
+          - build
+          - test
+          - deploy
 
 jobs:
-
-  ubuntu:
+  linux-job:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Show runner information
-        run: |
-          echo "OS name: $(uname -s)"
-          echo "Hostname: $(hostname)"
-          echo "Current user: $(whoami)"
+      - name: Checkout Repo
+        uses: actions/checkout@v6
 
-  windows:
+      - name: print details
+        run: |
+          # echo " The OS name: $(uname -s)"
+          # echo " The runner's hostname: $(hostname)"
+          # echo " The current user running the job: $(whoami)"
+          echo " Docker version: $(docker -v)"
+          echo " python  version: $(python3 --version)"
+          echo " Node version: $(node -v)"
+          echo " Git version: $(git -v)"
+
+  window-job:
+    needs: linux-job
     runs-on: windows-latest
-
     steps:
-      - name: Show runner information
-        run: |
-          Write-Host "OS name: $env:OS"
-          Write-Host "Hostname: $env:COMPUTERNAME"
-          Write-Host "Current user: $env:USERNAME"
+      - name: The OS name
+        run: systeminfo | findstr /B /C:"OS Name"
 
-  macos:
+      - name: The runner's hostname
+        run: hostname
+
+      - name: The current user running the job
+        run: whoami
+
+  mac-job:
+    needs: window-job
     runs-on: macos-latest
-
     steps:
-      - name: Show runner information
+      - name: print details
         run: |
-          echo "OS name: $(uname -s)"
-          echo "Hostname: $(hostname)"
-          echo "Current user: $(whoami)"
+          echo " The OS name: $( sw_vers) "
+          echo " The runner's hostname: $(hostname)"
+          echo " The current user running the job: $(whoami)"
+
 ```
 
 ## Why do they run in parallel?
@@ -335,29 +353,36 @@ On the `ubuntu-latest` runner, print:
 ## Workflow
 
 ```yaml
-name: Check Preinstalled Tools
+name: Three Jobs run on the workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the enviroment to Deploy this workflow"
+        required: true
+        type: choice
+        options:
+          - build
+          - test
+          - deploy
 
 jobs:
-  tools:
+  linux-job:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check tools
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: print details
         run: |
-          echo "Docker:"
-          docker --version
-
-          echo "Python:"
-          python3 --version
-
-          echo "Node:"
-          node --version
-
-          echo "Git:"
-          git --version
+          # echo " The OS name: $(uname -s)"
+          # echo " The runner's hostname: $(hostname)"
+          # echo " The current user running the job: $(whoami)"
+          echo " Docker version: $(docker -v)"
+          echo " python  version: $(python3 --version)"
+          echo " Node version: $(node -v)"
+          echo " Git version: $(git -v)"
 ```
 
 ## Why does it matter that runners come with tools pre-installed?
@@ -514,34 +539,36 @@ Create:
 ## Workflow
 
 ```yaml
-name: Self Hosted Runner
+name: Self-Hosted Runner
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the Environment to Deploy app on the Self-Hosted Runner"
+        required: true
+        type: choice
+        options:
+          - Test
+          - Deploy
 
 jobs:
-  test:
-    runs-on: self-hosted
-
+  Self-Hosted:
+    runs-on: my-linux-runner
     steps:
-      - name: Show hostname
+      - name: Some task
         run: |
-          echo "Hostname:"
-          hostname
+          echo "Running on self-hosted runner"
+          echo "Runner label: my-linux-runner"
+          echo "Runner name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner architecture: $RUNNER_ARCH"
+          echo "The hostname of machine: $(hostname)"
+          echo "The Working directory: $(pwd)"
+          echo "---Create file name hello.txt---"
+          touch hello.txt
+          echo "File is created successfully: $(ls -l hello.txt)"
 
-      - name: Show working directory
-        run: |
-          echo "Working directory:"
-          pwd
-
-      - name: Create file
-        run: |
-          echo "Created by GitHub Actions" > runner-test.txt
-
-      - name: Verify file
-        run: |
-          ls -l runner-test.txt
-          cat runner-test.txt
 ```
 
 ## What happens?
@@ -621,15 +648,16 @@ on:
 
 jobs:
   test:
-    runs-on: [self-hosted, my-linux-runner]
+    runs-on: my-linux-runner
 
     steps:
-      - name: Show runner information
+      - name: Some task
         run: |
+          echo "Running on self-hosted runner"
+          echo "Runner label: my-linux-runner"
           echo "Runner name: $RUNNER_NAME"
-          echo "OS: $RUNNER_OS"
-          echo "Architecture: $RUNNER_ARCH"
-          hostname
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner architecture: $RUNNER_ARCH"
 ```
 
 ## Does it still pick up the job?
@@ -713,67 +741,6 @@ You
   +--> Install tools
   +--> Manage security
   +--> Manage runner
-```
-
----
-
-# Commands Used
-
-## Git Commands
-
-```bash
-git status
-git add .
-git commit -m "Day 42 - GitHub runners"
-git push
-```
-
-## Linux Runner Commands
-
-```bash
-uname -s
-hostname
-whoami
-pwd
-```
-
-## Check Docker
-
-```bash
-docker --version
-```
-
-## Check Python
-
-```bash
-python3 --version
-```
-
-## Check Node.js
-
-```bash
-node --version
-```
-
-## Check Git
-
-```bash
-git --version
-```
-
-## Self-Hosted Runner
-
-Start manually:
-
-```bash
-./run.sh
-```
-
-Install as a service:
-
-```bash
-sudo ./svc.sh install
-sudo ./svc.sh start
 ```
 
 ---
