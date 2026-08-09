@@ -134,35 +134,6 @@ means:
 
 ---
 
-## Fixing Docker's `docker images` Warning
-
-Running:
-
-```bash
-docker images | grep -E 'nginx|ubuntu|alpine'
-```
-
-may show:
-
-```text
-WARNING: This output is designed for human readability.
-For machine-readable output, please use --format.
-```
-
-A better Docker command is:
-
-```bash
-docker images --format '{{.Repository}}:{{.Tag}}'
-```
-
-Then filter:
-
-```bash
-docker images --format '{{.Repository}}:{{.Tag}}' | grep -E '^(nginx|ubuntu|alpine):'
-```
-
----
-
 # 3. Ubuntu vs Alpine
 
 ## Why is Alpine much smaller?
