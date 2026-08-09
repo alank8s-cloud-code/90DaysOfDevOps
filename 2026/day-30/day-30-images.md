@@ -1,7 +1,5 @@
 # Day 30 – Docker Images & Container Lifecycle
 
-## 90 Days DevOps Challenge
-
 ### Objective
 
 Today's goal is to understand **how Docker images and containers actually work**, including:
@@ -14,19 +12,6 @@ Today's goal is to understand **how Docker images and containers actually work**
 * Working with running containers
 * Container networking, ports, and mounts
 * Docker cleanup and disk usage
-
----
-
-# Table of Contents
-
-1. [Docker Images](#task-1-docker-images)
-2. [Image Layers](#task-2-image-layers)
-3. [Container Lifecycle](#task-3-container-lifecycle)
-4. [Working with Running Containers](#task-4-working-with-running-containers)
-5. [Cleanup](#task-5-cleanup)
-6. [Important Commands](#important-commands)
-7. [Challenges Faced](#challenges-faced)
-8. [What I Learned](#what-i-learned)
 
 ---
 
