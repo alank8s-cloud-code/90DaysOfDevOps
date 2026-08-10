@@ -53,20 +53,6 @@ git config --list
 
 📷 Add screenshot of:
 
-```bash
-git --version
-```
-
----
-
-## Screenshot 2
-
-📷 Add screenshot of:
-
-```bash
-git config --list
-```
-
 ---
 
 # Task 2: Create Your Git Project
@@ -120,33 +106,7 @@ ls .git
 
 ---
 
-## Screenshot 3
-
-📷 Output of:
-
-```bash
-git init
-```
-
----
-
-## Screenshot 4
-
-📷 Output of:
-
-```bash
-git status
-```
-
----
-
-## Screenshot 5
-
-📷 Output of:
-
-```bash
-ls .git
-```
+## Output
 
 ---
 
@@ -304,31 +264,6 @@ git log
 
 ## Screenshot 7
 
-📷 Output of:
-
-```bash
-git status
-```
-
----
-
-## Screenshot 8
-
-📷 Output of:
-
-```bash
-git commit
-```
-
----
-
-## Screenshot 9
-
-📷 Output of:
-
-```bash
-git log
-```
 
 ---
 
@@ -376,21 +311,6 @@ git log --oneline
 
 ## Screenshot 10
 
-📷 Output of:
-
-```bash
-git diff
-```
-
----
-
-## Screenshot 11
-
-📷 Output of:
-
-```bash
-git log --oneline
-```
 
 ---
 
