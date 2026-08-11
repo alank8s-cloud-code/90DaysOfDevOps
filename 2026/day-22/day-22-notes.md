@@ -623,11 +623,6 @@ a123456 Add viewing commands
 b234567 Add basic Git commands
 c345678 Add Git commands reference
 ```
----
-## 📚 My Notes
-
-<!-- SURAJ-START -->
-<!-- SURAJ-END -->
 
 ---
 
