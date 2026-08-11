@@ -3,7 +3,7 @@
 
 # Day 22 – Introduction to Git: Your First Repository
 
-## 📌 What is Git?
+## What is Git?
 
 **Git is a distributed version control system (VCS)** used to track changes in files and source code.
 
