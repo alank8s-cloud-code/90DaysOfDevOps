@@ -439,7 +439,7 @@ Do **not** manually modify files inside `.git` unless you know exactly what you 
 
 ![output](2.1.png)
 
-![output](2.1.png)
+![output](2.2.png)
 
 ----
 # Task 3 – Create `git-commands.md`
