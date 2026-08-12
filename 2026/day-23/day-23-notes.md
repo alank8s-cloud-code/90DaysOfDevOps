@@ -574,7 +574,7 @@ git push origin main
 
 ---
 
-## What I Learned
+## What I Learned Today
 
 * Created, switched, and deleted Git branches using modern Git commands.
 * Understood the purpose of `HEAD` and how Git tracks the current branch.
