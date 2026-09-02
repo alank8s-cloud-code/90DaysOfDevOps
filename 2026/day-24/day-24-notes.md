@@ -1,19 +1,4 @@
 # Day 24 – Git Merge, Rebase, Squash, Stash & Cherry-pick
-
-# 🚀 90 Days DevOps Challenge – Day 24
-
-## Objective
-
-Learn advanced Git concepts by practicing:
-
-* Git Merge
-* Git Rebase
-* Squash Merge
-* Git Stash
-* Git Cherry-pick
-
-Understand when to use each command, why it exists, and how it affects Git history.
-
 ---
 
 # Task 1 – Git Merge
