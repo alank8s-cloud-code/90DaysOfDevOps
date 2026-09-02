@@ -80,7 +80,7 @@ No extra merge commit is created.
 
 ## Output
 
-[task1](task-1.1.png)
+![task1](task-1.1.png)
 
 ---
 
@@ -112,7 +112,7 @@ A---B---E-----M
 
 ## Output
 
-[task1](task-1.2.png)
+![task1](task-1.2.png)
 
 ---
 
@@ -216,7 +216,7 @@ Notice that D and E become new commits.
 
 ## Output
 
-[task1](task-2.1.png)
+![task1](task-2.1.png)
 
 ---
 
@@ -284,10 +284,10 @@ Squash Merge combines them into one meaningful commit.
 
 ## Output
 
-[task1](task-3.1.png)
+![task1](task-3.1.png)
 
 
-[task1](task-3.2.png)
+![task1](task-3.2.png)
 
 ---
 
@@ -387,9 +387,9 @@ After `git stash pop`, changes returned.
 
 ## Output
 
-[task1](task-4.1.png)
+![task1](task-4.1.png)
 
-[task1](task-4.1.png)
+![task1](task-4.1.png)
 
 ---
 
@@ -432,7 +432,7 @@ Instead of merging everything, copy only that fix.
 
 ## Output
 
-[task1](task-5.png)
+![task1](task-5.png)
 
 ## Observation
 
