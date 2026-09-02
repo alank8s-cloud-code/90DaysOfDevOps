@@ -78,6 +78,7 @@ A---B---C---D
 
 No extra merge commit is created.
 
+
 ---
 
 ### 2. Merge Commit
@@ -108,61 +109,11 @@ A---B---E-----M
 
 ---
 
-## Commands Used
-
-```bash
-git checkout main
-
-git checkout -b feature-login
-
-echo "Login Page" > login.txt
-
-git add .
-
-git commit -m "Add login page"
-
-echo "Login API" >> login.txt
-
-git add .
-
-git commit -m "Add login API"
-
-git checkout main
-
-git merge feature-login
-```
-
 ---
 
 ## Observation
 
 Git performed a **Fast-Forward Merge** because `main` had not changed.
-
----
-
-## Second Merge
-
-Commands
-
-```bash
-git checkout -b feature-signup
-
-echo "Signup Page" > signup.txt
-
-git add .
-
-git commit -m "Add signup page"
-
-git checkout main
-
-echo "Main Update" > app.txt
-
-git add .
-
-git commit -m "Update app"
-
-git merge feature-signup
-```
 
 ---
 
