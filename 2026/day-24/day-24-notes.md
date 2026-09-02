@@ -78,6 +78,9 @@ A---B---C---D
 
 No extra merge commit is created.
 
+## Output
+
+[task1](task-1.1.png)
 
 ---
 
@@ -107,19 +110,9 @@ A---B---E-----M
 
 `M` is the merge commit.
 
----
+## Output
 
----
-
-## Observation
-
-Git performed a **Fast-Forward Merge** because `main` had not changed.
-
----
-
-## Observation
-
-Git created a **Merge Commit** because both branches had different commits.
+[task1](task-1.2.png)
 
 ---
 
@@ -162,8 +155,6 @@ Hello DevOps
 Git asks the developer to manually choose the correct version.
 
 ---
-
-# Answers
 
 ## What is a Fast-Forward Merge?
 
@@ -223,49 +214,11 @@ A---B---C---D'---E'
 
 Notice that D and E become new commits.
 
----
+## Output
 
-## Commands
-
-```bash
-git checkout -b feature-dashboard
-
-echo Dashboard > dashboard.txt
-
-git add .
-
-git commit -m "Dashboard UI"
-
-echo API >> dashboard.txt
-
-git add .
-
-git commit -m "Dashboard API"
-
-git checkout main
-
-echo Home > home.txt
-
-git add .
-
-git commit -m "Home update"
-
-git checkout feature-dashboard
-
-git rebase main
-```
+[task1](task-2.1.png)
 
 ---
-
-## Observation
-
-`git log --oneline --graph --all`
-
-shows a straight history with no merge commit.
-
----
-
-# Answers
 
 ## What does Rebase actually do?
 
@@ -329,27 +282,12 @@ These are not useful in the final history.
 
 Squash Merge combines them into one meaningful commit.
 
----
+## Output
 
-## Commands
+[task1](task-3.1.png)
 
-```bash
-git checkout -b feature-profile
 
-git commit -m "Commit 1"
-
-git commit -m "Commit 2"
-
-git commit -m "Commit 3"
-
-git commit -m "Commit 4"
-
-git checkout main
-
-git merge --squash feature-profile
-
-git commit -m "Add Profile Feature"
-```
+[task1](task-3.2.png)
 
 ---
 
@@ -378,8 +316,6 @@ git merge feature-settings
 Main contains every commit.
 
 ---
-
-# Answers
 
 ## What does Squash Merge do?
 
@@ -449,9 +385,13 @@ Changes disappeared after `git stash`.
 
 After `git stash pop`, changes returned.
 
----
+## Output
 
-# Answers
+[task1](task-4.1.png)
+
+[task1](task-4.1.png)
+
+---
 
 ## Difference between `git stash pop` and `git stash apply`
 
@@ -490,25 +430,9 @@ Instead of merging everything, copy only that fix.
 
 ---
 
-## Commands
+## Output
 
-```bash
-git checkout -b feature-hotfix
-
-git commit -m "Commit 1"
-
-git commit -m "Commit 2"
-
-git commit -m "Commit 3"
-
-git log --oneline
-
-git checkout main
-
-git cherry-pick <commit-id-of-second-commit>
-```
-
----
+[task1](task-5.png)
 
 ## Observation
 
@@ -516,7 +440,6 @@ Only the selected commit appeared on `main`.
 
 ---
 
-# Answers
 
 ## What does Cherry-pick do?
 
@@ -538,27 +461,6 @@ It copies a specific commit from one branch and applies it to another branch.
 * Merge conflicts
 * Duplicate commits
 * Confusing history if overused
-
----
-
-# Commands Used
-
-```bash
-git checkout
-git checkout -b
-git branch
-git add .
-git commit -m
-git merge
-git merge --squash
-git rebase
-git stash
-git stash list
-git stash pop
-git stash apply
-git cherry-pick
-git log --oneline --graph --all
-```
 
 ---
 
