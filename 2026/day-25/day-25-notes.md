@@ -16,42 +16,105 @@ staged and working-directory changes. Doing it hands-on is the only way the
 difference actually sticks — reading about it isn't enough to build the
 muscle memory of "which flag do I want right now."
 
-**Setup:**
+**Repo used:** `~/devops-git-practice`, branch `feature-login`.
+
+### Commits A, B, C
 ```bash
-git init devops-git-practice && cd devops-git-practice
-echo "line 1" > file.txt && git add . && git commit -m "Commit A"
-echo "line 2" >> file.txt && git add . && git commit -m "Commit B"
-echo "line 3" >> file.txt && git add . && git commit -m "Commit C"
+$ vi app.log
+$ git add app.log
+$ git commit -m "update the app.log"
+[feature-login bf80a7b] update the app.log
+ 1 file changed, 1 insertion(+)
+
+$ vi hello.sh
+$ git add hello.sh
+$ git commit -m "modify the hello.sh"
+[feature-login cb168af] modify the hello.sh
+ 1 file changed, 1 insertion(+)
+
+$ vi raj.txt
+$ git add raj.txt
+$ git commit -m "raj.txt"
+[feature-login 7616b69] raj.txt
+ 1 file changed, 2 insertions(+)
+
+$ git log --oneline
+7616b69 (HEAD -> feature-login) raj.txt       <- Commit C
+cb168af modify the hello.sh                    <- Commit B
+bf80a7b update the app.log                     <- Commit A
+8d8b11a (origin/feature-login) add: files
 ```
 
 ### `git reset --soft HEAD~1`
 ```bash
-git reset --soft HEAD~1
-```
-- HEAD moves back to Commit B.
-- Commit C's changes stay **staged** (in the index), ready to re-commit immediately.
-- Working directory is untouched.
-- `git status` shows the changes as "Changes to be committed."
+$ git reset --soft HEAD~1
+$ git status
+On branch feature-login
+Your branch is ahead of 'origin/feature-login' by 2 commits.
 
-### `git reset --mixed HEAD~1` (re-commit C first, then run this)
-```bash
-git commit -m "Commit C"
-git reset --mixed HEAD~1
+Changes to be committed:
+	modified:   raj.txt
 ```
-- HEAD moves back to Commit B.
-- Commit C's changes are **unstaged** but still present in the working directory.
-- `git status` shows them as "Changes not staged for commit."
-- This is the **default** mode if you just type `git reset HEAD~1`.
+- HEAD moved back one commit, from Commit C (`7616b69`) to Commit B (`cb168af`).
+- Commit C's file change (`raj.txt`) did **not** disappear — it landed right
+  back in the **staging area**, shown under "Changes to be committed."
+- Nothing in the working directory changed at all.
 
-### `git reset --hard HEAD~1` (re-commit C first, then run this)
+### `git reset --mixed HEAD~1`
+Re-committed `raj.txt` + a `hello.sh` edit together as commit `ffd7ef1`, then reset:
 ```bash
-git commit -m "Commit C"
-git reset --hard HEAD~1
+$ git commit -m "hello.sh"
+[feature-login ffd7ef1] hello.sh
+ 2 files changed, 5 insertions(+)
+
+$ git reset --mixed HEAD~1
+Unstaged changes after reset:
+M	hello.sh
+M	raj.txt
+
+$ git status
+On branch feature-login
+Your branch is ahead of 'origin/feature-login' by 2 commits.
+
+Changes not staged for commit:
+	modified:   hello.sh
+	modified:   raj.txt
 ```
-- HEAD moves back to Commit B.
-- Commit C's changes are **gone from staging AND the working directory**.
-- `git status` shows a clean tree — as if Commit C never happened.
-- The only way back is `git reflog` (if the commit hasn't been garbage-collected yet).
+- HEAD moved back to `cb168af` again, same as before.
+- This time the changes were **not** re-staged — `git reset --mixed`
+  dumped them straight into the working directory as "Changes not staged
+  for commit." I'd have to `git add` them again before committing.
+
+### `git reset --hard <commit>`
+Added a new file `simran.txt`, committed it as `7affd1d`, then hard-reset all
+the way back to Commit A (`bf80a7b`):
+```bash
+$ git add simran.txt
+$ git commit -m "simran.txt"
+[feature-login 7affd1d] simran.txt
+
+$ git reset --hard bf80a7b
+HEAD is now at bf80a7b update the app.log
+
+$ git status
+On branch feature-login
+Your branch is ahead of 'origin/feature-login' by 1 commit.
+nothing to commit, working tree clean
+
+$ cat simran.txt
+(empty output — the content is gone)
+
+$ git log --oneline
+bf80a7b (HEAD -> feature-login) update the app.log
+8d8b11a (origin/feature-login) add: files
+```
+- HEAD jumped back to Commit A, and commits B and C's edits are completely
+  gone — both from the index **and** the working directory.
+- `git status` reports a perfectly clean tree, as if the later commits and
+  the `simran.txt` edit had never happened. `cat simran.txt` confirms the
+  content is wiped, not just unstaged.
+- This is the only mode of the three that actually **destroys** uncommitted
+  work sitting in your files.
 
 ### Answers
 
@@ -93,30 +156,42 @@ does it in a completely different, non-destructive way. The point of this
 task is to see with your own eyes that the reverted commit *stays* in the
 log — history only grows forward, it's never rewritten.
 
-**Setup:**
+### Commits X, Y, Z
 ```bash
-echo "x" > file2.txt && git add . && git commit -m "Commit X"
-echo "y" >> file2.txt && git add . && git commit -m "Commit Y"
-echo "z" >> file2.txt && git add . && git commit -m "Commit Z"
+$ git log --oneline
+80ae049 (HEAD -> feature-login) Z
+b115c26 Y
+2424ebb X
+bf80a7b update the app.log
+8d8b11a (origin/feature-login) add: files
 ```
+(X, Y, Z each add a line to `raj.txt`.)
 
 ### Revert commit Y
 ```bash
-git log --oneline          # find Y's hash
-git revert <hash-of-Y>
+$ git revert b115c26
+[feature-login 7464281] This reverts commit b115c2617d056bee163e3250ddf8eaad7ab1799e.
+ 1 file changed, 1 deletion(-)
 ```
-- Git opens a commit message editor for a **new commit** that undoes Y's changes.
-- If Y's changes conflict with Z (since Z came after Y), Git may report a
-  conflict that needs to be resolved manually before the revert commit completes.
-- No existing commits are deleted or rewritten.
+- Git created a **brand-new commit** (`7464281`) whose diff removes exactly
+  the line that Y had added — no editor conflict this time since Y's line
+  could be cleanly removed.
+- `git show` on the new commit confirms it: `diff --git a/raj.txt b/raj.txt`
+  with `-"Y"` as the only change.
 
 ### Check `git log`
 ```bash
-git log --oneline
+$ git log --oneline
+7464281 (HEAD -> feature-login) This reverts commit b115c2617d056bee163e3250ddf8eaad7ab1799e.
+80ae049 Z
+b115c26 Y                                          <- still here!
+2424ebb X
+bf80a7b update the app.log
+8d8b11a (origin/feature-login) add: files
 ```
-- Commit Y is **still visible** in the log.
-- A new commit (e.g., `Revert "Commit Y"`) appears after Z, effectively
-  cancelling Y's changes while preserving the full history.
+- Commit Y (`b115c26`) is **still visible** in the log, untouched.
+- A new revert commit (`7464281`) sits on top of Z, cancelling Y's change
+  while preserving the entire history — nothing was deleted or rewritten.
 
 ### Answers
 
@@ -155,6 +230,10 @@ is fine."
 | **Removes commit from history?** | Yes — commits after the reset point become unreachable (and can be garbage collected) | No — the original commit remains in history; a new "undo" commit is added |
 | **Safe for shared/pushed branches?** | No — rewrites history, requires force-push, breaks collaborators' history | Yes — history stays linear and forward-moving, safe to push normally |
 | **When to use** | Local/private branches, undoing recent uncommitted or unpushed work, cleaning up before push | Shared branches (main, develop, release), undoing a bug or bad change that's already public |
+
+**One-line rule to remember:**
+> If the commit has **not** been pushed → use `git reset`.
+> If the commit has already been pushed and shared → use `git revert`.
 
 ---
 
