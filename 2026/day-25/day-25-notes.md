@@ -60,6 +60,13 @@ Changes to be committed:
   back in the **staging area**, shown under "Changes to be committed."
 - Nothing in the working directory changed at all.
 
+---
+## Output:
+
+![task](task1.1.png)
+
+---
+
 ### `git reset --mixed HEAD~1`
 Re-committed `raj.txt` + a `hello.sh` edit together as commit `ffd7ef1`, then reset:
 ```bash
@@ -84,7 +91,12 @@ Changes not staged for commit:
 - This time the changes were **not** re-staged — `git reset --mixed`
   dumped them straight into the working directory as "Changes not staged
   for commit." I'd have to `git add` them again before committing.
+---
+## Output:
 
+![task](task1.2.png)
+
+---
 ### `git reset --hard <commit>`
 Added a new file `simran.txt`, committed it as `7affd1d`, then hard-reset all
 the way back to Commit A (`bf80a7b`):
@@ -115,8 +127,12 @@ bf80a7b (HEAD -> feature-login) update the app.log
   content is wiped, not just unstaged.
 - This is the only mode of the three that actually **destroys** uncommitted
   work sitting in your files.
+---
+## Output:
 
-### Answers
+![task](task1.3.png)
+
+---
 
 **Difference between `--soft`, `--mixed`, and `--hard`:**
 
@@ -193,7 +209,12 @@ bf80a7b update the app.log
 - A new revert commit (`7464281`) sits on top of Z, cancelling Y's change
   while preserving the entire history — nothing was deleted or rewritten.
 
-### Answers
+---
+## Output:
+
+![task](task1.4.png)
+
+---
 
 **How is `git revert` different from `git reset`?**
 `git reset` moves the branch pointer backward and can rewrite/erase history.
@@ -328,7 +349,6 @@ frequent commits, pairs naturally with feature flags and CI/CD.
 **Cons:** Requires excellent automated testing and CI discipline; risky
 without feature flags since incomplete work can reach `main` easily.
 
-### Answers
 
 **Startup shipping fast:** **GitHub Flow.** It's lightweight, keeps `main`
 deployable, and matches a small team shipping continuously without the
@@ -358,76 +378,29 @@ every flag — it's to have a single place you can grep through when you
 forget a command mid-task, built up incrementally as you actually learn
 each piece rather than copy-pasted from a tutorial.
 
-This section was appended to `git-commands.md` in the `devops-git-practice`
-repo.
+This section was appended to `git-commands.md` in the `devops-git-practice` repo.
 
-### Setup & Config
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-git config --list
-git init
-```
+---
 
-### Basic Workflow
-```bash
-git status
-git add <file>          # stage a file
-git add .                # stage everything
-git commit -m "message"
-git log
-git log --oneline
-git diff                 # unstaged changes
-git diff --staged        # staged changes
-```
+# Challenges Faced
 
-### Branching
-```bash
-git branch                    # list branches
-git branch <name>             # create branch
-git checkout <name>           # switch branch (legacy)
-git checkout -b <name>        # create + switch
-git switch <name>             # switch branch (modern)
-git switch -c <name>          # create + switch (modern)
-git branch -d <name>          # delete merged branch
-git branch -D <name>          # force delete branch
-```
+* Understanding the difference between **reset and revert**.
+* Practicing **soft, mixed, and hard reset**.
+* Understanding **non-fast-forward errors** after resetting.
+* Learning when history rewriting is dangerous.
+* Understanding GitFlow, GitHub Flow, and Trunk-Based Development.
+* Choosing the correct branching strategy for different teams.
 
-### Remote
-```bash
-git remote add origin <url>
-git push origin <branch>
-git push -u origin <branch>   # set upstream
-git pull origin <branch>
-git fetch origin
-git clone <url>
-# fork: done via GitHub UI, then clone your fork locally
-```
+---
 
-### Merging & Rebasing
-```bash
-git merge <branch>            # merge branch into current
-git rebase <branch>           # replay current branch commits onto <branch>
-git rebase -i HEAD~3          # interactive rebase (squash/reorder/edit)
-git rebase --continue
-git rebase --abort
-```
+# What I Learned
 
-### Stash & Cherry Pick
-```bash
-git stash                     # save uncommitted changes
-git stash list
-git stash pop                 # reapply + remove from stash
-git stash apply                # reapply, keep in stash
-git stash drop
-git cherry-pick <commit-hash> # apply a specific commit onto current branch
-```
+* `git reset` is useful for changing local history.
+* `git revert` safely undoes changes using a new commit.
+* `git reset --hard` can be destructive.
+* Shared branches should generally use `git revert` instead of reset.
+* GitFlow provides structured release management.
+* GitHub Flow supports simple and fast CI/CD.
+* Trunk-Based Development encourages frequent integration.
 
-### Reset & Revert
-```bash
-git reset --soft HEAD~1       # move HEAD, keep changes staged
-git reset --mixed HEAD~1      # move HEAD, unstage changes (default)
-git reset --hard HEAD~1       # move HEAD, discard all changes
-git revert <commit-hash>      # create a new commit undoing a past commit
-git reflog                    # recover from a bad reset
-```
+---
