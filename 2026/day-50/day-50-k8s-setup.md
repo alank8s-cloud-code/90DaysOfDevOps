@@ -768,7 +768,7 @@ means the node is currently considered ready to run workloads.
 
 ---
 
-# 4. List Namespaces
+## 4. List Namespaces
 
 ```bash
 kubectl get namespaces
@@ -793,7 +793,7 @@ flask-app
 
 ---
 
-# 5. List All Pods
+## 5. List All Pods
 
 ```bash
 kubectl get pods -A
@@ -827,7 +827,7 @@ The `NODE` column shows the node hosting each Pod.
 
 ---
 
-# My Cluster Pod Placement
+## My Cluster Pod Placement
 
 I used:
 
@@ -1009,7 +1009,7 @@ alank8s-cloud-worker          Ready    <none>          ...
 
 ---
 
-# Kubernetes Contexts
+## Kubernetes Contexts
 
 ## Check Current Context
 
@@ -1053,7 +1053,7 @@ CURRENT   NAME                 CLUSTER              AUTHINFO
 
 ---
 
-# What is kubeconfig?
+## What is kubeconfig?
 
 A **kubeconfig** is a configuration file that tells `kubectl` how to connect to Kubernetes clusters.
 
@@ -1102,7 +1102,7 @@ kubectl config view
 
 ---
 
-# Important Kubernetes Commands Learned
+## Important Kubernetes Commands Learned
 
 | Command                           | Purpose                           |
 | --------------------------------- | --------------------------------- |
@@ -1123,7 +1123,7 @@ kubectl config view
 
 ---
 
-# Screenshots
+## Screenshots
 
 ## 1. Kubernetes Nodes
 
@@ -1165,7 +1165,7 @@ kubectl get pods -n kube-system
 
 ---
 
-# What I Learned Today
+## What I Learned Today
 
 ### 1. Kubernetes
 
@@ -1237,7 +1237,7 @@ Kubernetes continuously tries to make the actual cluster state match the desired
 
 ---
 
-# Final Architecture Summary
+## Final Architecture Summary
 
 ```text
                          USER
@@ -1269,7 +1269,7 @@ Kubernetes continuously tries to make the actual cluster state match the desired
                        Pods                            Pods
 ```
 
-# Conclusion
+## Conclusion
 
 Today I started my Kubernetes journey by understanding why Kubernetes is needed, how its architecture works, and how the Control Plane communicates with Worker Nodes.
 
