@@ -14,7 +14,7 @@ Learn how to avoid repeating GitHub Actions workflow logic by using:
 
 ---
 
-# 1. What is a Reusable Workflow?
+# What is a Reusable Workflow?
 
 A **reusable workflow** is a GitHub Actions workflow that can be called by another workflow.
 
@@ -45,7 +45,7 @@ Instead of copying the same jobs into multiple workflows, we can create the work
 
 ---
 
-# 2. What is `workflow_call`?
+# What is `workflow_call`?
 
 `workflow_call` is the trigger that makes a workflow reusable.
 
@@ -74,7 +74,7 @@ Example:
 
 ---
 
-# 3. Reusable Workflow vs Regular Action
+#  Reusable Workflow vs Regular Action
 
 A regular action is normally used inside a job's `steps:`:
 
@@ -108,7 +108,7 @@ Reusable Jobs
 
 ---
 
-# 4. Task 2 – Create the Reusable Workflow
+# Task 2 – Create the Reusable Workflow
 
 File:
 
@@ -195,7 +195,7 @@ The actual secret should **never be printed**.
 
 ---
 
-# 5. Task 3 – Create the Caller Workflow
+# Task 3 – Create the Caller Workflow
 
 File:
 
@@ -260,7 +260,7 @@ ${{ secrets.docker_token }}
 
 ---
 
-# 6. Task 4 – Add Outputs
+# Task 4 – Add Outputs
 
 A reusable workflow can return a value to its caller.
 
@@ -348,7 +348,7 @@ jobs:
 
 ---
 
-# 7. Understanding the Output
+# Understanding the Output
 
 The step creates the output:
 
@@ -407,7 +407,7 @@ Caller Workflow
 
 ---
 
-# 8. Caller Workflow with Second Job
+# Caller Workflow with Second Job
 
 ```yaml
 name: Call Reusable Build
@@ -468,7 +468,7 @@ The SHA will be different for each commit.
 
 ---
 
-# 9. Task 5 – Create a Composite Action
+# Task 5 – Create a Composite Action
 
 A **Composite Action** is a reusable collection of steps.
 
@@ -494,7 +494,7 @@ Directory structure:
 
 ---
 
-# 10. Composite Action YAML
+# Composite Action YAML
 
 ```yaml
 name: Setup and Greet
@@ -545,7 +545,7 @@ runs:
 
 ---
 
-# 11. How the Composite Action Works
+# How the Composite Action Works
 
 The action accepts:
 
@@ -578,7 +578,7 @@ The action then:
 
 ---
 
-# 12. Creating the Caller Workflow for the Composite Action
+# Creating the Caller Workflow for the Composite Action
 
 Create:
 
@@ -615,7 +615,7 @@ jobs:
 
 ---
 
-# 13. Understanding `uses:`
+# Understanding `uses:`
 
 This line:
 
@@ -637,7 +637,7 @@ and executes its steps.
 
 ---
 
-# 14. Understanding the `greeted` Output
+# Understanding the `greeted` Output
 
 Inside the Composite Action:
 
@@ -707,7 +707,7 @@ Greeted: true
 
 ---
 
-# 15. Task 6 – Reusable Workflow vs Composite Action
+# Task 6 – Reusable Workflow vs Composite Action
 
 | Feature                      | Reusable Workflow                         | Composite Action                                 |
 | ---------------------------- | ----------------------------------------- | ------------------------------------------------ |
@@ -720,7 +720,7 @@ Greeted: true
 
 ---
 
-# 16. Reusable Workflow vs Composite Action – Simple Diagram
+# Reusable Workflow vs Composite Action – Simple Diagram
 
 ### Reusable Workflow
 
@@ -760,7 +760,7 @@ Composite Action
 
 ---
 
-# 17. Important Syntax
+# Important Syntax
 
 ## Reusable Workflow
 
@@ -819,7 +819,7 @@ ${{ needs.build.outputs.build_version }}
 
 ---
 
-# 18. Composite Action Syntax
+# Composite Action Syntax
 
 A Composite Action requires:
 
@@ -858,7 +858,7 @@ ${{ inputs.language }}
 
 ---
 
-# 19. What I Learned
+# What I Learned
 
 ### Reusable Workflows
 
@@ -903,5 +903,44 @@ I also learned that a Composite Action can expose an output that the caller work
 ```yaml
 ${{ steps.<action-id>.outputs.<output-name> }}
 ```
+
+
+## Challenges Faced
+
+* Understanding the difference between a **reusable workflow** and a **composite action**.
+* Understanding why `workflow_call` is required for reusable workflows.
+* Understanding where `runs-on` is used when one workflow calls another workflow.
+* Understanding how inputs and secrets are passed from the caller workflow to the reusable workflow.
+* Understanding the flow of outputs:
+  **step output → job output → reusable workflow output → caller workflow**.
+* Understanding why `needs:` is required when the second job depends on the output of the build job.
+* Understanding how `steps.<id>.outputs.<name>` works with Composite Actions.
+* Understanding the difference between `uses:` at the **job level** for reusable workflows and at the **step level** for actions.
+* Working with GitHub Actions YAML structure and keeping the correct indentation.
+
+## What I Learned Today
+
+* Learned what **Reusable Workflows** are and why they are useful for avoiding repeated CI/CD workflows.
+* Learned how `workflow_call` makes a workflow reusable.
+* Learned how to define and pass **inputs** and **secrets**.
+* Learned how a caller workflow uses a reusable workflow with `uses:`.
+* Learned how to create and use **workflow outputs**.
+* Learned how to pass values from a step to a job and then from the reusable workflow back to the caller.
+* Learned how `needs:` creates a dependency between jobs.
+* Learned what **Composite Actions** are and how they help reuse multiple steps.
+* Learned how to create a custom action using `action.yml` and `runs: using: composite`.
+* Learned how to pass inputs to a Composite Action using `with:`.
+* Learned how to create and access Composite Action outputs.
+* Learned the key difference:
+
+```text
+Reusable Workflow → Reuse Jobs / Complete Workflows
+
+Composite Action → Reuse Steps
+```
+
+### Key Takeaway
+
+Today I learned how GitHub Actions can be made more **reusable, modular, and maintainable** instead of repeating the same workflow steps in every pipeline.
 
 ---
