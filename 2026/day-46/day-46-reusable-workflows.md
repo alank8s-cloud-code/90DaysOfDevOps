@@ -907,31 +907,24 @@ ${{ steps.<action-id>.outputs.<output-name> }}
 
 ## Challenges Faced
 
-* Understanding the difference between a **reusable workflow** and a **composite action**.
-* Understanding why `workflow_call` is required for reusable workflows.
-* Understanding where `runs-on` is used when one workflow calls another workflow.
-* Understanding how inputs and secrets are passed from the caller workflow to the reusable workflow.
-* Understanding the flow of outputs:
-  **step output → job output → reusable workflow output → caller workflow**.
-* Understanding why `needs:` is required when the second job depends on the output of the build job.
-* Understanding how `steps.<id>.outputs.<name>` works with Composite Actions.
-* Understanding the difference between `uses:` at the **job level** for reusable workflows and at the **step level** for actions.
-* Working with GitHub Actions YAML structure and keeping the correct indentation.
+* Understanding the difference between **Reusable Workflows** and **Composite Actions**.
+* Understanding how `workflow_call`, inputs, secrets, and outputs work.
+* Understanding the **output flow**: step → job → reusable workflow → caller.
+* Understanding how `needs:` creates dependencies between jobs.
+* Working with GitHub Actions YAML structure and indentation.
 
 ## What I Learned Today
 
-* Learned what **Reusable Workflows** are and why they are useful for avoiding repeated CI/CD workflows.
-* Learned how `workflow_call` makes a workflow reusable.
-* Learned how to define and pass **inputs** and **secrets**.
-* Learned how a caller workflow uses a reusable workflow with `uses:`.
-* Learned how to create and use **workflow outputs**.
-* Learned how to pass values from a step to a job and then from the reusable workflow back to the caller.
-* Learned how `needs:` creates a dependency between jobs.
-* Learned what **Composite Actions** are and how they help reuse multiple steps.
-* Learned how to create a custom action using `action.yml` and `runs: using: composite`.
-* Learned how to pass inputs to a Composite Action using `with:`.
-* Learned how to create and access Composite Action outputs.
+* Learned how **Reusable Workflows** help avoid repeating CI/CD jobs.
+* Learned how to use `workflow_call` with **inputs, secrets, and outputs**.
+* Learned how to pass outputs between jobs and workflows.
+* Learned how **Composite Actions** help reuse multiple steps.
+* Learned how to create a custom action using `action.yml`.
 * Learned the key difference:
+
+**Reusable Workflow → Reuse complete jobs/workflows**
+**Composite Action → Reuse multiple steps**
+
 
 ```text
 Reusable Workflow → Reuse Jobs / Complete Workflows
