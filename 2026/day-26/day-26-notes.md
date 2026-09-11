@@ -142,6 +142,10 @@ If an operation requires an additional scope, authentication can be refreshed. F
 ```bash
 gh auth refresh -h github.com -s delete_repo
 ```
+---
+## Output
+
+![ouput](task1.png)
 
 ---
 
@@ -154,6 +158,10 @@ Basic syntax:
 ```bash
 gh repo create <repository-name>
 ```
+---
+## Output
+
+![ouput](task2.1.png)
 
 Example:
 
@@ -192,6 +200,10 @@ Equivalent Git command:
 git clone git@github.com:alank8s-cloud-code/my_portfolio.git
 ```
 
+## Output
+
+![ouput](task2.2.png)
+
 ---
 
 ## 3. View repository details
@@ -216,6 +228,11 @@ gh repo view alank8s-cloud-code/my_portfolio \
 This is useful when repository information needs to be consumed by scripts.
 
 ---
+## Output
+
+![ouput](task2.3.png)
+
+---
 
 ## 4. List repositories
 
@@ -228,6 +245,10 @@ Limit the number of results:
 ```bash
 gh repo list --limit 10
 ```
+---
+## Output
+
+![ouput](task2.4.png)
 
 ---
 
@@ -328,6 +349,10 @@ gh issue create \
   --body "The README contains formatting errors that need to be corrected." \
   --label "documentation"
 ```
+---
+## Output
+
+![ouput](task3_working_with_issues.png)
 
 ---
 
@@ -462,6 +487,12 @@ gh pr create \
   --base main \
   --head feature/update-readme
 ```
+---
+## Output
+
+![ouput](task4_working_with_pull_requests.png)
+
+---
 
 You can also use:
 
@@ -627,6 +658,10 @@ If the workflow has inputs:
 gh workflow run "Workflow Name" \
   -f environment=testing
 ```
+---
+## Output
+
+![ouput](task5_working_with_github_actions.png)
 
 ---
 
@@ -877,6 +912,10 @@ Example idea:
 ```bash
 gh search repos "kubernetes" --language go
 ```
+---
+## Output
+
+![ouput]()
 
 ---
 
