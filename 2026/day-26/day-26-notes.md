@@ -915,7 +915,7 @@ gh search repos "kubernetes" --language go
 ---
 ## Output
 
-![ouput]()
+![ouput](task6.png)
 
 ---
 
