@@ -203,7 +203,7 @@ Secrets should be stored using appropriate secret-management mechanisms such as 
 
 ## After
 
-![Alt text](image-2.png)
+![Alt text](image2.png)
 
 
 ---
