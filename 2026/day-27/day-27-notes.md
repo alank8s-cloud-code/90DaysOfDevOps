@@ -16,7 +16,7 @@ Before making changes, I reviewed my GitHub profile from a recruiter's perspecti
 
 | Question                              | Result                                                      |
 | ------------------------------------- | ----------------------------------------------------------- |
-| Is my profile picture professional?   | Reviewed and improved if required                           |
+| Is my profile picture professional?   | Reviewed and improved                           |
 | Is my bio filled in?                  | Updated with a DevOps-focused bio                           |
 | Are my pinned repositories relevant?  | Updated to highlight important projects                     |
 | Do my repositories have descriptions? | Added/updated descriptions                                  |
@@ -197,10 +197,13 @@ Secrets should be stored using appropriate secret-management mechanisms such as 
 
 ## Before
 
+![Alt text](image-1.png)
 
+---
 
 ## After
 
+![Alt text](image-2.png)
 
 
 ---
